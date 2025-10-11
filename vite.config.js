@@ -1,19 +1,25 @@
 import { defineConfig } from 'vite'
 import react from '@vitejs/plugin-react'
 
-// https://vitejs.dev/config/
 export default defineConfig({
   plugins: [react()],
-  base: '/My-Portfolio-site/', // ✅ Static base path for GitHub Pages
+  base: '/My-Portfolio-site/',
   server: {
     port: 3000,
-    open: true
+    open: true,
   },
   build: {
+    target: ['chrome100', 'esnext'], // ✅ ensures full top-level await support
+    modulePreload: { polyfill: true }, // ✅ helps with preload + dynamic imports
     rollupOptions: {
       output: {
-        manualChunks: undefined // Optional: can help reduce large chunk warnings
-      }
-    }
-  }
+        manualChunks: undefined,
+      },
+    },
+  },
+  esbuild: {
+    supported: {
+      'top-level-await': true, // ✅ explicitly enable top-level await
+    },
+  },
 })
