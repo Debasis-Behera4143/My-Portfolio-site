@@ -11,6 +11,13 @@ import AOS from "aos";
 import "aos/dist/aos.css";
 import { Code, Award, Boxes, Zap } from "lucide-react";
 
+// Import images directly
+import Project1Img from '/assets/Project1.png';
+import Project2Img from '/assets/Project2.png';
+import Project3Img from '/assets/Project3.png';
+import Project4Img from '/assets/Project4.jpg';
+import Project5Img from '/assets/Project5.png';
+
 const ToggleButton = ({ onClick, isShowingMore }) => (
   <button
     onClick={onClick}
@@ -99,7 +106,7 @@ export default function FullWidthTabs() {
       Title: "My Portfolio Site",
       Description:
         "A premium animated portfolio designed to showcase my technical expertise and creativity. Built with React, Vite, Tailwind CSS, Framer Motion, and AOS.",
-      Img: new URL('/assets/Project1.png', import.meta.url).href,
+      Img: Project1Img,
       Link: "https://debasis-behera4143.github.io/My-Portfolio-site/",
       Github: "https://github.com/Debasis-Behera4143/My-Portfolio-site",
       Tech: ["React", "Vite", "Tailwind CSS"],
@@ -109,7 +116,7 @@ export default function FullWidthTabs() {
       Title: "Racex - Car Racing Game",
       Description:
         "A fast-paced browser-based racing game built with HTML, CSS, and JavaScript with real-time scoring system and collision detection.",
-      Img: new URL('/assets/Project2.png', import.meta.url).href,
+      Img: Project2Img,
       Link: "https://debasis-behera4143.github.io/Mini-car-game/",
       Github: "https://github.com/Debasis-Behera4143/Mini-car-game",
       Tech: ["HTML", "CSS", "JavaScript"],
@@ -119,7 +126,7 @@ export default function FullWidthTabs() {
       Title: "Spotify Clone",
       Description:
         "A pixel-perfect front-end clone of Spotify's interface, crafted using only HTML and CSS with advanced CSS techniques.",
-      Img: new URL('/assets/Project3.png', import.meta.url).href,
+      Img: Project3Img,
       Link: "https://debasis-behera4143.github.io/SPOTIFY-CLONE/",
       Github: "https://github.com/Debasis-Behera4143/SPOTIFY-CLONE",
       Tech: ["HTML", "CSS"],
@@ -129,7 +136,7 @@ export default function FullWidthTabs() {
       Title: "Face Recognition System",
       Description:
         "An AI/ML-powered face recognition system developed with Python, leveraging OpenCV and machine learning algorithms.",
-      Img: new URL('/assets/Project4.jpg', import.meta.url).href,
+      Img: Project4Img,
       Link: "https://github.com/Debasis-Behera4143/Face-recognition",
       Github: "https://github.com/Debasis-Behera4143/Face-recognition",
       Tech: ["Python", "AI", "OpenCV"],
@@ -139,7 +146,7 @@ export default function FullWidthTabs() {
       Title: "Color Changing App",
       Description:
         "An interactive web application that dynamically changes background colors with smooth transitions and animations.",
-      Img: new URL('/assets/Project5.png', import.meta.url).href,
+      Img: Project5Img,
       Link: "https://github.com/Debasis-Behera4143/Color-Changing",
       Github: "https://github.com/Debasis-Behera4143/Color-Changing",
       Tech: ["HTML", "CSS", "JavaScript"],

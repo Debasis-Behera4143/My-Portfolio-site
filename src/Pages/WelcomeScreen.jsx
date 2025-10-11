@@ -71,7 +71,7 @@ const WelcomeScreen = ({ onLoadingComplete }) => {
               </h1>
               
               <p className="text-xl text-[#B0B8C5] max-w-2xl mx-auto">
-                Full Stack Developer & AI Enthusiast
+              Btech computer science and engineering student
               </p>
             </div>
             
