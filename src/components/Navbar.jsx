@@ -1,27 +1,24 @@
 import React, { useState, useEffect } from "react";
-import { Menu, X } from "lucide-react";
+import { Menu, X, Home, User, Code, FileText, Mail } from "lucide-react";
 import Resume from "./Resume";
 
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
-  const [activeSection, setActiveSection] = useState("Home");
+  const [activeSection, setActiveSection] = useState("home");
   const [isResumeOpen, setIsResumeOpen] = useState(false);
 
   const navItems = [
-    { href: "#Home", label: "Home" },
-    { href: "#About", label: "About" },
-    { href: "#Portfolio", label: "Portfolio" },
-    // Keep modal-triggering Resume button for quick view
-    { label: "Resume", action: () => setIsResumeOpen(true) },
-    // New section link for Resume & CV
-    { href: "#ResumeCV", label: "Resume & CV" },
-    { href: "#Contact", label: "Contact" },
+    { href: "#home", label: "Home", icon: Home },
+    { href: "#about", label: "About", icon: User },
+    { href: "#portfolio", label: "Portfolio", icon: Code },
+    { label: "Resume", action: () => setIsResumeOpen(true), icon: FileText },
+    { href: "#contact", label: "Contact", icon: Mail },
   ];
 
   useEffect(() => {
     const handleScroll = () => {
-      setScrolled(window.scrollY > 20);
+      setScrolled(window.scrollY > 25);
 
       const sections = navItems
         .map((item) => {
@@ -30,7 +27,7 @@ const Navbar = () => {
           if (section) {
             return {
               id: item.href.replace("#", ""),
-              offset: section.offsetTop - 550,
+              offset: section.offsetTop - 120,
               height: section.offsetHeight,
             };
           }
@@ -83,40 +80,41 @@ const Navbar = () => {
       <nav
         className={`fixed w-full top-0 z-50 transition-all duration-500 ${
           isOpen
-            ? "bg-[#030014]"
+            ? "bg-[#0B0F19]/95 backdrop-blur-xl"
             : scrolled
-            ? "bg-[#030014]/50 backdrop-blur-xl"
+            ? "bg-[#0B0F19]/90 backdrop-blur-xl"
             : "bg-transparent"
-        }`}
+        } border-b ${scrolled ? 'border-[#2B6FFF]/20' : 'border-transparent'}`}
         role="navigation"
         aria-label="Main Navigation"
       >
-        <div className="mx-auto px-[5%] sm:px-[5%] lg:px-[10%]">
-          <div className="flex items-center justify-between h-16">
+        <div className="mx-auto px-[5%] lg:px-[12%]">
+          <div className="flex items-center justify-between h-20 sm:h-24">
             <div className="flex-shrink-0">
               <a
-                href="#Home"
-                onClick={(e) => scrollToSection(e, "#Home")}
-                className="text-xl font-bold bg-gradient-to-r from-[#a855f7] to-[#6366f1] bg-clip-text text-transparent"
+                href="#home"
+                onClick={(e) => scrollToSection(e, "#home")}
+                className="text-2xl sm:text-3xl font-bold primary-gradient"
               >
-                Debasis Behera
+                Debasis
               </a>
             </div>
 
-            <div className="hidden md:block">
-              <div className="ml-8 flex items-center space-x-8">
+            <div className="hidden lg:block">
+              <div className="flex items-center space-x-2">
                 {navItems.map((item) =>
                   item.action ? (
                     <button
                       key={item.label}
                       onClick={item.action}
-                      className={`text-sm font-medium ${
-                        activeSection === item.label
-                          ? "text-purple-500"
-                          : "text-gray-300 hover:text-white"
-                      } transition-colors`}
+                      className={`px-4 py-2 sm:px-5 sm:py-3 text-base sm:text-lg font-bold rounded-xl transition-all duration-300 flex items-center gap-2 ${
+                        activeSection === item.label.toLowerCase()
+                          ? "primary-button"
+                          : "text-[#B0B8C5] hover:text-white hover:bg-[#121826]"
+                      }`}
                       aria-label={item.label}
                     >
+                      <item.icon className="w-4 h-4 sm:w-5 sm:h-5" />
                       {item.label}
                     </button>
                   ) : (
@@ -124,77 +122,75 @@ const Navbar = () => {
                       key={item.label}
                       href={item.href}
                       onClick={(e) => scrollToSection(e, item.href)}
-                      className="group relative px-1 py-2 text-sm font-medium"
+                      className={`px-4 py-2 sm:px-5 sm:py-3 text-base sm:text-lg font-bold rounded-xl transition-all duration-300 flex items-center gap-2 ${
+                        activeSection === item.href?.substring(1).toLowerCase()
+                          ? "primary-button"
+                          : "text-[#B0B8C5] hover:text-white hover:bg-[#121826]"
+                      }`}
                       aria-label={item.label}
                     >
-                      <span
-                        className={`relative z-10 transition-colors duration-300 ${
-                          activeSection === item.href?.substring(1)
-                            ? "bg-gradient-to-r from-[#6366f1] to-[#a855f7] bg-clip-text text-transparent font-semibold"
-                            : "text-[#e2d3fd] group-hover:text-white"
-                        }`}
-                      >
-                        {item.label}
-                      </span>
-                      <span
-                        className={`absolute bottom-0 left-0 w-full h-0.5 bg-gradient-to-r from-[#6366f1] to-[#a855f7] transform origin-left transition-transform duration-300 ${
-                          activeSection === item.href?.substring(1)
-                            ? "scale-x-100"
-                            : "scale-x-0 group-hover:scale-x-100"
-                        }`}
-                      />
+                      <item.icon className="w-4 h-4 sm:w-5 sm:h-5" />
+                      {item.label}
                     </a>
                   )
                 )}
               </div>
             </div>
 
-            <div className="md:hidden">
+            <div className="lg:hidden">
               <button
                 onClick={() => setIsOpen(!isOpen)}
-                className={`relative p-2 text-[#e2d3fd] hover:text-white transition-transform duration-300 ease-in-out transform ${
-                  isOpen ? "rotate-90 scale-125" : "rotate-0 scale-100"
+                className={`relative p-3 sm:p-4 text-[#B0B8C5] hover:text-white transition-all duration-300 ease-in-out rounded-xl hover:bg-[#121826] ${
+                  isOpen ? "bg-[#121826]" : ""
                 }`}
                 aria-label="Toggle menu"
               >
-                {isOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
+                {isOpen ? <X className="w-6 h-6 sm:w-7 sm:h-7" /> : <Menu className="w-6 h-6 sm:w-7 sm:h-7" />}
               </button>
             </div>
           </div>
         </div>
 
         <div
-          className={`md:hidden transition-all duration-300 ease-in-out ${
+          className={`lg:hidden transition-all duration-300 ease-in-out ${
             isOpen ? "max-h-screen opacity-100" : "max-h-0 opacity-0 overflow-hidden"
           }`}
         >
-          <div className="px-4 py-6 space-y-4">
+          <div className="px-4 sm:px-6 py-6 sm:py-8 space-y-4 sm:space-y-5 border-t border-[#2B6FFF]/20">
             {navItems.map((item) =>
               item.action ? (
                 <button
                   key={item.label}
-                  onClick={item.action}
-                  className={`block w-full text-left px-4 py-3 text-lg font-medium transition-all duration-300 ease ${
-                    activeSection === item.label
-                      ? "bg-gradient-to-r from-[#6366f1] to-[#a855f7] bg-clip-text text-transparent font-semibold"
-                      : "text-[#e2d3fd] hover:text-white"
+                  onClick={() => {
+                    item.action();
+                    setIsOpen(false);
+                  }}
+                  className={`block w-full text-left px-4 py-3 sm:px-6 sm:py-4 text-lg sm:text-xl font-bold transition-all duration-300 ease rounded-xl flex items-center gap-3 ${
+                    activeSection === item.label.toLowerCase()
+                      ? "primary-button"
+                      : "text-[#B0B8C5] hover:text-white hover:bg-[#121826]"
                   }`}
                   aria-label={item.label}
                 >
+                  <item.icon className="w-5 h-5 sm:w-6 sm:h-6" />
                   {item.label}
                 </button>
               ) : (
                 <a
                   key={item.label}
                   href={item.href}
-                  onClick={(e) => scrollToSection(e, item.href)}
-                  className={`block px-4 py-3 text-lg font-medium transition-all duration-300 ease ${
-                    activeSection === item.href?.substring(1)
-                      ? "bg-gradient-to-r from-[#6366f1] to-[#a855f7] bg-clip-text text-transparent font-semibold"
-                      : "text-[#e2d3fd] hover:text-white"
+                  onClick={(e) => {
+                    scrollToSection(e, item.href);
+                    setIsOpen(false);
+                  }}
+                  className={`block px-4 py-3 sm:px-6 sm:py-4 text-lg sm:text-xl font-bold transition-all duration-300 ease rounded-xl flex items-center gap-3 ${
+                    activeSection === item.href?.substring(1).toLowerCase()
+                      ? "primary-button"
+                      : "text-[#B0B8C5] hover:text-white hover:bg-[#121826]"
                   }`}
                   aria-label={item.label}
                 >
+                  <item.icon className="w-5 h-5 sm:w-6 sm:h-6" />
                   {item.label}
                 </a>
               )

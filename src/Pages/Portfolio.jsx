@@ -1,11 +1,5 @@
 import React, { useEffect, useState, useCallback } from "react";
-
-// SUPABASE DISABLED - Using local data only
-// import { supabase } from "../supabase"; 
-
 import PropTypes from "prop-types";
-import SwipeableViews from "react-swipeable-views";
-import { useTheme } from "@mui/material/styles";
 import AppBar from "@mui/material/AppBar";
 import Tabs from "@mui/material/Tabs";
 import Tab from "@mui/material/Tab";
@@ -15,43 +9,19 @@ import CardProject from "../components/CardProject";
 import TechStackIcon from "../components/TechStackIcon";
 import AOS from "aos";
 import "aos/dist/aos.css";
-import Certificate from "../components/Certificate";
-import { Code, Award, Boxes } from "lucide-react";
-
+import { Code, Award, Boxes, Zap } from "lucide-react";
 
 const ToggleButton = ({ onClick, isShowingMore }) => (
   <button
     onClick={onClick}
-    className="
-      px-3 py-1.5
-      text-slate-300 
-      hover:text-white 
-      text-sm 
-      font-medium 
-      transition-all 
-      duration-300 
-      ease-in-out
-      flex 
-      items-center 
-      gap-2
-      bg-white/5 
-      hover:bg-white/10
-      rounded-md
-      border 
-      border-white/10
-      hover:border-white/20
-      backdrop-blur-sm
-      group
-      relative
-      overflow-hidden
-    "
+    className="px-8 py-4 text-gray-200 hover:text-white font-bold transition-all duration-300 flex items-center gap-4 primary-button group relative overflow-hidden text-xl"
   >
-    <span className="relative z-10 flex items-center gap-2">
-      {isShowingMore ? "See Less" : "See More"}
+    <span className="relative z-10 flex items-center gap-3">
+      {isShowingMore ? "Show Less" : "Show More"}
       <svg
         xmlns="http://www.w3.org/2000/svg"
-        width="16"
-        height="16"
+        width="24"
+        height="24"
         viewBox="0 0 24 24"
         fill="none"
         stroke="currentColor"
@@ -61,16 +31,14 @@ const ToggleButton = ({ onClick, isShowingMore }) => (
         className={`
           transition-transform 
           duration-300 
-          ${isShowingMore ? "group-hover:-translate-y-0.5" : "group-hover:translate-y-0.5"}
+          ${isShowingMore ? "group-hover:-translate-y-1" : "group-hover:translate-y-1"}
         `}
       >
         <polyline points={isShowingMore ? "18 15 12 9 6 15" : "6 9 12 15 18 9"}></polyline>
       </svg>
     </span>
-    <span className="absolute bottom-0 left-0 w-0 h-0.5 bg-purple-500/50 transition-all duration-300 group-hover:w-full"></span>
   </button>
 );
-
 
 function TabPanel({ children, value, index, ...other }) {
   return (
@@ -96,6 +64,11 @@ TabPanel.propTypes = {
   value: PropTypes.number.isRequired,
 };
 
+ToggleButton.propTypes = {
+  onClick: PropTypes.func.isRequired,
+  isShowingMore: PropTypes.bool.isRequired,
+};
+
 function a11yProps(index) {
   return {
     id: `full-width-tab-${index}`,
@@ -119,25 +92,24 @@ const techStacks = [
 ];
 
 export default function FullWidthTabs() {
-  const theme = useTheme();
   const [value, setValue] = useState(0);
   const [projects, setProjects] = useState([
     {
       id: 1,
       Title: "My Portfolio Site",
       Description:
-        "A premium animated portfolio designed to showcase my technical expertise and creativity. Built with React, Vite, Tailwind CSS, Framer Motion, and AOS, it features magnetic hover effects, parallax grid tunnel animations, and scroll-triggered transitions.",
-      Img: "/assets/Project1.png",
+        "A premium animated portfolio designed to showcase my technical expertise and creativity. Built with React, Vite, Tailwind CSS, Framer Motion, and AOS.",
+      Img: new URL('/assets/Project1.png', import.meta.url).href,
       Link: "https://debasis-behera4143.github.io/My-Portfolio-site/",
       Github: "https://github.com/Debasis-Behera4143/My-Portfolio-site",
-      Tech: ["React", "Vite", "Tailwind CSS", "Framer Motion", "AOS"],
+      Tech: ["React", "Vite", "Tailwind CSS"],
     },
     {
       id: 2,
       Title: "Racex - Car Racing Game",
       Description:
-        "A fast-paced browser-based racing game built with HTML, CSS, and JavaScript. It delivers smooth gameplay mechanics, real-time scoring, and collision detection.",
-      Img: "/assets/Project2.png",
+        "A fast-paced browser-based racing game built with HTML, CSS, and JavaScript with real-time scoring system and collision detection.",
+      Img: new URL('/assets/Project2.png', import.meta.url).href,
       Link: "https://debasis-behera4143.github.io/Mini-car-game/",
       Github: "https://github.com/Debasis-Behera4143/Mini-car-game",
       Tech: ["HTML", "CSS", "JavaScript"],
@@ -146,8 +118,8 @@ export default function FullWidthTabs() {
       id: 3,
       Title: "Spotify Clone",
       Description:
-        "A pixel-perfect front-end clone of Spotify's interface, crafted using only HTML and CSS. Demonstrates advanced CSS techniques such as flexbox, grid layouts, and responsive design.",
-      Img: "/assets/Project3.png",
+        "A pixel-perfect front-end clone of Spotify's interface, crafted using only HTML and CSS with advanced CSS techniques.",
+      Img: new URL('/assets/Project3.png', import.meta.url).href,
       Link: "https://debasis-behera4143.github.io/SPOTIFY-CLONE/",
       Github: "https://github.com/Debasis-Behera4143/SPOTIFY-CLONE",
       Tech: ["HTML", "CSS"],
@@ -156,25 +128,25 @@ export default function FullWidthTabs() {
       id: 4,
       Title: "Face Recognition System",
       Description:
-        "An AI/ML-powered face recognition system developed with Python, leveraging OpenCV and machine learning algorithms. It can detect and identify faces in real time with high accuracy.",
-      Img: "/assets/Project4.jpg",
+        "An AI/ML-powered face recognition system developed with Python, leveraging OpenCV and machine learning algorithms.",
+      Img: new URL('/assets/Project4.jpg', import.meta.url).href,
       Link: "https://github.com/Debasis-Behera4143/Face-recognition",
       Github: "https://github.com/Debasis-Behera4143/Face-recognition",
-      Tech: ["Python", "AI", "Machine Learning", "OpenCV"],
+      Tech: ["Python", "AI", "OpenCV"],
     },
     {
       id: 5,
       Title: "Color Changing App",
       Description:
-        "An interactive web application that dynamically changes background colors with smooth transitions. Built using HTML, CSS, and JavaScript.",
-      Img: "/assets/Project5.png",
+        "An interactive web application that dynamically changes background colors with smooth transitions and animations.",
+      Img: new URL('/assets/Project5.png', import.meta.url).href,
       Link: "https://github.com/Debasis-Behera4143/Color-Changing",
       Github: "https://github.com/Debasis-Behera4143/Color-Changing",
       Tech: ["HTML", "CSS", "JavaScript"],
     },
   ]);
   
-  const [certificates, setCertificates] = useState([]);
+  const [certificates] = useState([]);
   const [showAllProjects, setShowAllProjects] = useState(false);
   const [showAllCertificates, setShowAllCertificates] = useState(false);
   const isMobile = window.innerWidth < 768;
@@ -185,11 +157,8 @@ export default function FullWidthTabs() {
       once: false,
     });
     
-    // Clear any old cached data from Supabase
     localStorage.removeItem('projects');
     localStorage.removeItem('certificates');
-    
-    console.log("✅ Using local hardcoded projects:", projects);
   }, []);
 
   const handleChange = (event, newValue) => {
@@ -208,22 +177,14 @@ export default function FullWidthTabs() {
   const displayedCertificates = showAllCertificates ? certificates : certificates.slice(0, initialItems);
 
   return (
-    <div className="md:px-[10%] px-[5%] w-full sm:mt-0 mt-[3rem] bg-[#030014] overflow-hidden" id="Portofolio">
-      <div className="text-center pb-10" data-aos="fade-up" data-aos-duration="1000">
-        <h2 className="inline-block text-3xl md:text-5xl font-bold text-center mx-auto text-transparent bg-clip-text bg-gradient-to-r from-[#6366f1] to-[#a855f7]">
-          <span style={{
-            color: '#6366f1',
-            backgroundImage: 'linear-gradient(45deg, #6366f1 10%, #a855f7 93%)',
-            WebkitBackgroundClip: 'text',
-            backgroundClip: 'text',
-            WebkitTextFillColor: 'transparent'
-          }}>
-            Portfolio Showcase
-          </span>
+    <div className="lg:px-[12%] px-[5%] w-full sm:mt-0 mt-[4rem] bg-gradient-to-b from-[#0B0F19] to-[#121826] overflow-hidden section-padding" id="Portofolio">
+      <div className="text-center pb-16">
+        <h2 className="inline-block text-5xl lg:text-6xl font-bold text-center mx-auto primary-gradient">
+          <Zap className="inline-block w-12 h-12 lg:w-14 lg:h-14 text-[#2B6FFF] mb-4" />
+          <span className="block mt-2">Portfolio Showcase</span>
         </h2>
-        <p className="text-slate-400 max-w-2xl mx-auto text-sm md:text-base mt-2">
-          Explore my journey through projects, certifications, and technical expertise. 
-          Each section represents a milestone in my continuous learning path.
+        <p className="text-[#B0B8C5] max-w-3xl mx-auto text-xl mt-6">
+          Explore my journey through exceptional projects and technical expertise
         </p>
       </div>
 
@@ -233,8 +194,8 @@ export default function FullWidthTabs() {
           elevation={0}
           sx={{
             bgcolor: "transparent",
-            border: "1px solid rgba(255, 255, 255, 0.1)",
-            borderRadius: "20px",
+            border: "1px solid rgba(43, 111, 255, 0.3)",
+            borderRadius: "16px",
             position: "relative",
             overflow: "hidden",
             "&::before": {
@@ -244,12 +205,12 @@ export default function FullWidthTabs() {
               left: 0,
               right: 0,
               bottom: 0,
-              background: "linear-gradient(180deg, rgba(139, 92, 246, 0.03) 0%, rgba(59, 130, 246, 0.03) 100%)",
+              background: "linear-gradient(180deg, rgba(43, 111, 255, 0.1) 0%, rgba(223, 255, 0, 0.1) 100%)",
               backdropFilter: "blur(10px)",
               zIndex: 0,
             },
           }}
-          className="md:px-4"
+          className="lg:px-6 py-2"
         >
           <Tabs
             value={value}
@@ -260,134 +221,130 @@ export default function FullWidthTabs() {
             sx={{
               minHeight: "70px",
               "& .MuiTab-root": {
-                fontSize: { xs: "0.9rem", md: "1rem" },
+                fontSize: { xs: "1rem", md: "1.1rem" },
                 fontWeight: "600",
-                color: "#94a3b8",
+                color: "#B0B8C5",
                 textTransform: "none",
-                transition: "all 0.4s cubic-bezier(0.4, 0, 0.2, 1)",
+                transition: "all 0.3s cubic-bezier(0.4, 0, 0.2, 1)",
                 padding: "20px 0",
                 zIndex: 1,
                 margin: "8px",
                 borderRadius: "12px",
                 "&:hover": {
                   color: "#ffffff",
-                  backgroundColor: "rgba(139, 92, 246, 0.1)",
+                  backgroundColor: "rgba(43, 111, 255, 0.15)",
                   transform: "translateY(-2px)",
-                  "& .lucide": {
-                    transform: "scale(1.1) rotate(5deg)",
-                  },
                 },
                 "&.Mui-selected": {
                   color: "#fff",
-                  background: "linear-gradient(135deg, rgba(139, 92, 246, 0.2), rgba(59, 130, 246, 0.2))",
-                  boxShadow: "0 4px 15px -3px rgba(139, 92, 246, 0.2)",
-                  "& .lucide": {
-                    color: "#a78bfa",
-                  },
+                  background: "linear-gradient(135deg, rgba(43, 111, 255, 0.3), rgba(223, 255, 0, 0.3))",
+                  boxShadow: "0 4px 20px -2px rgba(43, 111, 255, 0.4)",
                 },
               },
               "& .MuiTabs-indicator": {
                 height: 0,
               },
               "& .MuiTabs-flexContainer": {
-                gap: "8px",
+                gap: "10px",
               },
             }}
           >
             <Tab
-              icon={<Code className="mb-2 w-5 h-5 transition-all duration-300" />}
+              icon={<Code className="mb-2 w-5 h-5" />}
               label="Projects"
               {...a11yProps(0)}
             />
             <Tab
-              icon={<Award className="mb-2 w-5 h-5 transition-all duration-300" />}
+              icon={<Award className="mb-2 w-5 h-5" />}
               label="Certificates"
               {...a11yProps(1)}
             />
             <Tab
-              icon={<Boxes className="mb-2 w-5 h-5 transition-all duration-300" />}
+              icon={<Boxes className="mb-2 w-5 h-5" />}
               label="Tech Stack"
               {...a11yProps(2)}
             />
           </Tabs>
         </AppBar>
 
-        <SwipeableViews
-          axis={theme.direction === "rtl" ? "x-reverse" : "x"}
-          index={value}
-          onChangeIndex={setValue}
-        >
-          <TabPanel value={value} index={0} dir={theme.direction}>
-            <div className="container mx-auto flex justify-center items-center overflow-hidden">
-              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 2xl:grid-cols-3 gap-5">
-                {displayedProjects.map((project, index) => (
-                  <div
-                    key={project.id || index}
-                    data-aos={index % 3 === 0 ? "fade-up-right" : index % 3 === 1 ? "fade-up" : "fade-up-left"}
-                    data-aos-duration={index % 3 === 0 ? "1000" : index % 3 === 1 ? "1200" : "1000"}
-                  >
-                    <CardProject
-                      Img={project.Img}
-                      Title={project.Title}
-                      Description={project.Description}
-                      Link={project.Link}
-                      id={project.id}
+        <div>
+          {value === 0 && (
+            <TabPanel value={value} index={0}>
+              <div className="container mx-auto py-10">
+                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                  {displayedProjects.map((project, index) => (
+                    <div
+                      key={project.id || index}
+                      data-aos="fade-up"
+                      data-aos-duration="800"
+                      data-aos-delay={index * 100}
+                    >
+                      <CardProject
+                        Img={project.Img}
+                        Title={project.Title}
+                        Description={project.Description}
+                        Link={project.Link}
+                        Github={project.Github}
+                        Tech={project.Tech}
+                        id={project.id}
+                      />
+                    </div>
+                  ))}
+                </div>
+                {projects.length > initialItems && (
+                  <div className="mt-12 w-full flex justify-center">
+                    <ToggleButton
+                      onClick={() => toggleShowMore('projects')}
+                      isShowingMore={showAllProjects}
                     />
                   </div>
-                ))}
+                )}
               </div>
-            </div>
-            {projects.length > initialItems && (
-              <div className="mt-6 w-full flex justify-start">
-                <ToggleButton
-                  onClick={() => toggleShowMore('projects')}
-                  isShowingMore={showAllProjects}
-                />
-              </div>
-            )}
-          </TabPanel>
+            </TabPanel>
+          )}
 
-          <TabPanel value={value} index={1} dir={theme.direction}>
-            <div className="container mx-auto flex justify-center items-center overflow-hidden">
-              <div className="grid grid-cols-1 md:grid-cols-3 md:gap-5 gap-4">
-                {displayedCertificates.map((certificate, index) => (
-                  <div
-                    key={certificate.id || index}
-                    data-aos={index % 3 === 0 ? "fade-up-right" : index % 3 === 1 ? "fade-up" : "fade-up-left"}
-                    data-aos-duration={index % 3 === 0 ? "1000" : index % 3 === 1 ? "1200" : "1000"}
-                  >
-                    <Certificate ImgSertif={certificate.Img} />
+          {value === 1 && (
+            <TabPanel value={value} index={1}>
+              <div className="container mx-auto py-10">
+                <div className="text-center py-12">
+                  <div className="inline-block p-6 rounded-2xl bg-[#121826] border border-[#2B6FFF]/20">
+                    <Award className="w-16 h-16 text-[#2B6FFF] mx-auto mb-4" />
+                    <h3 className="text-2xl font-bold text-white mb-2">Certificates Coming Soon</h3>
+                    <p className="text-[#B0B8C5] max-w-md">
+                      I'm currently working on adding my professional certificates and achievements to this section.
+                    </p>
                   </div>
-                ))}
+                </div>
               </div>
-            </div>
-            {certificates.length > initialItems && (
-              <div className="mt-6 w-full flex justify-start">
-                <ToggleButton
-                  onClick={() => toggleShowMore('certificates')}
-                  isShowingMore={showAllCertificates}
-                />
-              </div>
-            )}
-          </TabPanel>
+            </TabPanel>
+          )}
 
-          <TabPanel value={value} index={2} dir={theme.direction}>
-            <div className="container mx-auto flex justify-center items-center overflow-hidden pb-[5%]">
-              <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 lg:gap-8 gap-5">
-                {techStacks.map((stack, index) => (
-                  <div
-                    key={index}
-                    data-aos={index % 3 === 0 ? "fade-up-right" : index % 3 === 1 ? "fade-up" : "fade-up-left"}
-                    data-aos-duration={index % 3 === 0 ? "1000" : index % 3 === 1 ? "1200" : "1000"}
-                  >
-                    <TechStackIcon TechStackIcon={stack.icon} Language={stack.language} />
-                  </div>
-                ))}
+          {value === 2 && (
+            <TabPanel value={value} index={2}>
+              <div className="container mx-auto py-10">
+                <div className="grid grid-cols-3 sm:grid-cols-4 md:grid-cols-6 gap-6">
+                  {techStacks.map((stack, index) => (
+                    <div
+                      key={index}
+                      data-aos="fade-up"
+                      data-aos-duration="600"
+                      data-aos-delay={index * 50}
+                      className="flex flex-col items-center"
+                    >
+                      <TechStackIcon TechStackIcon={stack.icon} Language={stack.language} />
+                      <span className="mt-3 text-sm text-[#B0B8C5] text-center">{stack.language}</span>
+                    </div>
+                  ))}
+                </div>
               </div>
-            </div>
-          </TabPanel>
-        </SwipeableViews>
+            </TabPanel>
+          )}
+        </div>
       </Box>
     </div>
   );
 }
+
+FullWidthTabs.propTypes = {
+  // No props needed for this component
+};

@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { Share2, User, Mail, MessageSquare, Send } from "lucide-react";
+import { Share2, User, Mail, MessageSquare, Send, MapPin, Phone, Zap } from "lucide-react";
 import { Link } from "react-router-dom";
 import SocialLinks from "../components/SocialLinks";
 import Komentar from "../components/Commentar";
@@ -47,7 +47,7 @@ const ContactPage = () => {
       // Using FormSubmit to handle form submissions
       const formSubmitUrl = 'https://formsubmit.co/debasisbehera1508@gmail.com';
       
-      // Siapkan data form untuk FormSubmit
+      // Prepare form data for FormSubmit
       const submitData = new FormData();
       submitData.append('name', formData.name);
       submitData.append('email', formData.email);
@@ -67,7 +67,7 @@ const ContactPage = () => {
         title: 'Success',
         text: 'Your message has been sent successfully.',
         icon: 'success',
-        confirmButtonColor: '#6366f1',
+        confirmButtonColor: '#2B6FFF',
         timer: 2000,
         timerProgressBar: true
       });
@@ -84,7 +84,7 @@ const ContactPage = () => {
           title: 'Success',
           text: 'Your message has been sent successfully.',
           icon: 'success',
-          confirmButtonColor: '#6366f1',
+          confirmButtonColor: '#2B6FFF',
           timer: 2000,
           timerProgressBar: true
         });
@@ -99,7 +99,7 @@ const ContactPage = () => {
           title: 'Failed',
           text: 'Something went wrong. Please try again later.',
           icon: 'error',
-          confirmButtonColor: '#6366f1'
+          confirmButtonColor: '#2B6FFF'
         });
       }
     } finally {
@@ -108,66 +108,54 @@ const ContactPage = () => {
   };
 
   return (
-    <div className="px-[5%] sm:px-[5%] lg:px-[10%] " >
-      <div className="text-center lg:mt-[5%] mt-10 mb-2 sm:px-0 px-[5%]">
+    <div className="px-[5%] lg:px-[12%] section-padding">
+      <div className="text-center lg:mt-[6%] mt-12 mb-16 sm:px-0 px-[5%]">
         <h2
           data-aos="fade-down"
-          data-aos-duration="1000"
-          className="inline-block text-3xl md:text-5xl font-bold text-center mx-auto text-transparent bg-clip-text bg-gradient-to-r from-[#6366f1] to-[#a855f7]"
+          data-aos-duration="1200"
+          className="inline-block text-5xl lg:text-7xl font-bold text-center mx-auto primary-gradient"
         >
-          <span
-            style={{
-              color: "#6366f1",
-              backgroundImage:
-                "linear-gradient(45deg, #6366f1 10%, #a855f7 93%)",
-              WebkitBackgroundClip: "text",
-              backgroundClip: "text",
-              WebkitTextFillColor: "transparent",
-            }}
-          >
-            Contact Debasis Behera
-          </span>
+          <Zap className="inline-block w-12 h-12 lg:w-16 lg:h-16 text-[#2B6FFF] mb-4" />
+          <span className="block mt-2">Contact Me</span>
         </h2>
         <p
           data-aos="fade-up"
-          data-aos-duration="1100"
-          className="text-slate-400 max-w-2xl mx-auto text-sm md:text-base mt-2"
+          data-aos-duration="1300"
+          className="text-[#B0B8C5] max-w-3xl mx-auto text-xl mt-8"
         >
-          Have a question? Send me a message and I’ll get back to you soon.
+          Have a question or want to collaborate on an exceptional project? Send me a message and I'll respond promptly.
         </p>
       </div>
 
       <div
-        className="h-auto py-10 flex items-center justify-center 2xl:pr-[3.1%] lg:pr-[3.8%]  md:px-0"
+        className="h-auto py-12 flex items-center justify-center"
         id="Contact"
       >
-        <div className="container px-[1%] grid grid-cols-1 sm:grid-cols-1 md:grid-cols-1 lg:grid-cols-[45%_55%] 2xl:grid-cols-[35%_65%] gap-12" >
+        <div className="container px-[2%] grid grid-cols-1 lg:grid-cols-2 gap-14">
+          {/* Contact Form */}
           <div
-        
-            className="bg-white/5 backdrop-blur-xl rounded-3xl shadow-2xl p-5 py-10 sm:p-10 transform transition-all duration-500 hover:shadow-[#6366f1]/10"
+            className="premium-card p-6 sm:p-8 md:p-10 rounded-3xl shadow-2xl transform transition-all duration-500 hover:shadow-[#2B6FFF]/30"
+            data-aos="fade-right"
+            data-aos-duration="1000"
           >
-            <div className="flex justify-between items-start mb-8">
+            <div className="flex justify-between items-start mb-8 sm:mb-10">
               <div>
-                <h2 className="text-4xl font-bold mb-3 text-transparent bg-clip-text bg-gradient-to-r from-[#6366f1] to-[#a855f7]">
-                  Contact
+                <h2 className="text-3xl sm:text-4xl font-bold primary-gradient mb-3 sm:mb-4">
+                  Get In Touch
                 </h2>
-                <p className="text-gray-400">
-                  Want to discuss something? Send me a message and let’s talk.
+                <p className="text-[#B0B8C5] text-lg sm:text-xl">
+                  Fill out the form and I'll get back to you as soon as possible.
                 </p>
               </div>
-              <Share2 className="w-10 h-10 text-[#6366f1] opacity-50" />
+              <Share2 className="w-10 h-10 sm:w-14 sm:h-14 text-[#2B6FFF] opacity-60" />
             </div>
 
             <form 
               onSubmit={handleSubmit}
-              className="space-y-6"
+              className="space-y-6 sm:space-y-8"
             >
-              <div
-                data-aos="fade-up"
-                data-aos-delay="100"
-                className="relative group"
-              >
-                <User className="absolute left-4 top-4 w-5 h-5 text-gray-400 group-focus-within:text-[#6366f1] transition-colors" />
+              <div className="relative group">
+                <User className="absolute left-4 sm:left-6 top-4 sm:top-6 w-5 h-5 sm:w-6 sm:h-6 text-[#B0B8C5] group-focus-within:text-[#2B6FFF] transition-colors" />
                 <input
                   type="text"
                   name="name"
@@ -175,16 +163,12 @@ const ContactPage = () => {
                   value={formData.name}
                   onChange={handleChange}
                   disabled={isSubmitting}
-                  className="w-full p-4 pl-12 bg-white/10 rounded-xl border border-white/20 placeholder-gray-500 text-white focus:outline-none focus:ring-2 focus:ring-[#6366f1]/30 transition-all duration-300 hover:border-[#6366f1]/30 disabled:opacity-50"
+                  className="w-full p-4 sm:p-6 pl-12 sm:pl-16 premium-card rounded-xl border border-[#2B6FFF]/20 placeholder-[#B0B8C5] text-white focus:outline-none focus:ring-2 focus:ring-[#2B6FFF]/40 transition-all duration-300 hover:border-[#2B6FFF]/40 disabled:opacity-50 text-base sm:text-xl"
                   required
                 />
               </div>
-              <div
-                data-aos="fade-up"
-                data-aos-delay="200"
-                className="relative group"
-              >
-                <Mail className="absolute left-4 top-4 w-5 h-5 text-gray-400 group-focus-within:text-[#6366f1] transition-colors" />
+              <div className="relative group">
+                <Mail className="absolute left-4 sm:left-6 top-4 sm:top-6 w-5 h-5 sm:w-6 sm:h-6 text-[#B0B8C5] group-focus-within:text-[#2B6FFF] transition-colors" />
                 <input
                   type="email"
                   name="email"
@@ -192,45 +176,82 @@ const ContactPage = () => {
                   value={formData.email}
                   onChange={handleChange}
                   disabled={isSubmitting}
-                  className="w-full p-4 pl-12 bg-white/10 rounded-xl border border-white/20 placeholder-gray-500 text-white focus:outline-none focus:ring-2 focus:ring-[#6366f1]/30 transition-all duration-300 hover:border-[#6366f1]/30 disabled:opacity-50"
+                  className="w-full p-4 sm:p-6 pl-12 sm:pl-16 premium-card rounded-xl border border-[#2B6FFF]/20 placeholder-[#B0B8C5] text-white focus:outline-none focus:ring-2 focus:ring-[#2B6FFF]/40 transition-all duration-300 hover:border-[#2B6FFF]/40 disabled:opacity-50 text-base sm:text-xl"
                   required
                 />
               </div>
-              <div
-                data-aos="fade-up"
-                data-aos-delay="300"
-                className="relative group"
-              >
-                <MessageSquare className="absolute left-4 top-4 w-5 h-5 text-gray-400 group-focus-within:text-[#6366f1] transition-colors" />
+              <div className="relative group">
+                <MessageSquare className="absolute left-4 sm:left-6 top-4 sm:top-6 w-5 h-5 sm:w-6 sm:h-6 text-[#B0B8C5] group-focus-within:text-[#2B6FFF] transition-colors" />
                 <textarea
                   name="message"
                   placeholder="Your message"
                   value={formData.message}
                   onChange={handleChange}
                   disabled={isSubmitting}
-                  className="w-full resize-none p-4 pl-12 bg-white/10 rounded-xl border border-white/20 placeholder-gray-500 text-white focus:outline-none focus:ring-2 focus:ring-[#6366f1]/30 transition-all duration-300 hover:border-[#6366f1]/30 h-[9.9rem] disabled:opacity-50"
+                  className="w-full resize-none p-4 sm:p-6 pl-12 sm:pl-16 premium-card rounded-xl border border-[#2B6FFF]/20 placeholder-[#B0B8C5] text-white focus:outline-none focus:ring-2 focus:ring-[#2B6FFF]/40 transition-all duration-300 hover:border-[#2B6FFF]/40 h-32 sm:h-[15rem] disabled:opacity-50 text-base sm:text-xl"
                   required
                 />
               </div>
               <button
-                data-aos="fade-up"
-                data-aos-delay="400"
                 type="submit"
                 disabled={isSubmitting}
-                className="w-full bg-gradient-to-r from-[#6366f1] to-[#a855f7] text-white py-4 rounded-xl font-semibold transition-all duration-300 hover:scale-[1.02] hover:shadow-lg hover:shadow-[#6366f1]/20 active:scale-[0.98] flex items-center justify-center gap-2 disabled:opacity-50 disabled:cursor-not-allowed disabled:hover:scale-100"
+                className="w-full primary-button py-4 sm:py-6 font-bold transition-all duration-300 hover:scale-[1.02] active:scale-[0.98] flex items-center justify-center gap-3 sm:gap-4 disabled:opacity-50 disabled:cursor-not-allowed disabled:hover:scale-100 text-lg sm:text-2xl"
               >
-                <Send className="w-5 h-5" />
+                <Send className="w-5 h-5 sm:w-6 sm:h-6" />
                 {isSubmitting ? 'Sending...' : 'Send Message'}
               </button>
             </form>
-
-            <div className="mt-10 pt-6 border-t border-white/10 flex justify-center space-x-6">
-              <SocialLinks />
-            </div>
           </div>
 
-          <div className="  bg-white/5 backdrop-blur-xl rounded-3xl p-3 py-3 md:p-10 md:py-8 shadow-2xl transform transition-all duration-500 hover:shadow-[#6366f1]/10">
-            <Komentar />
+          {/* Right Column - Contact Info and Social Links */}
+          <div className="space-y-8 sm:space-y-10">
+            <div 
+              className="premium-card rounded-2xl sm:rounded-3xl p-6 sm:p-8 md:p-10"
+              data-aos="fade-left"
+              data-aos-duration="1000"
+            >
+              <h3 className="text-2xl sm:text-3xl font-bold primary-gradient mb-6 sm:mb-8">Contact Information</h3>
+              <div className="space-y-5 sm:space-y-6">
+                <div className="flex items-center gap-4 sm:gap-6 p-4 sm:p-6 premium-card rounded-xl hover:border-[#DFFF00] transition-all">
+                  <div className="p-3 sm:p-4 rounded-xl bg-[#2B6FFF]/20">
+                    <Phone className="w-6 h-6 sm:w-8 sm:h-8 text-[#2B6FFF]" />
+                  </div>
+                  <div>
+                    <h4 className="text-[#B0B8C5] text-base sm:text-lg">Phone</h4>
+                    <p className="text-white font-bold text-lg sm:text-xl">+91 XXXXXXXXXX</p>
+                  </div>
+                </div>
+                
+                <div className="flex items-center gap-4 sm:gap-6 p-4 sm:p-6 premium-card rounded-xl hover:border-[#DFFF00] transition-all">
+                  <div className="p-3 sm:p-4 rounded-xl bg-[#2B6FFF]/20">
+                    <Mail className="w-6 h-6 sm:w-8 sm:h-8 text-[#2B6FFF]" />
+                  </div>
+                  <div>
+                    <h4 className="text-[#B0B8C5] text-base sm:text-lg">Email</h4>
+                    <p className="text-white font-bold text-lg sm:text-xl">debasisbehera1508@gmail.com</p>
+                  </div>
+                </div>
+                
+                <div className="flex items-center gap-4 sm:gap-6 p-4 sm:p-6 premium-card rounded-xl hover:border-[#DFFF00] transition-all">
+                  <div className="p-3 sm:p-4 rounded-xl bg-[#2B6FFF]/20">
+                    <MapPin className="w-6 h-6 sm:w-8 sm:h-8 text-[#2B6FFF]" />
+                  </div>
+                  <div>
+                    <h4 className="text-[#B0B8C5] text-base sm:text-lg">Location</h4>
+                    <p className="text-white font-bold text-lg sm:text-xl">Odisha, India</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div 
+              className="premium-card rounded-2xl sm:rounded-3xl p-6 sm:p-8 md:p-10"
+              data-aos="fade-left"
+              data-aos-duration="1200"
+            >
+              <h3 className="text-2xl sm:text-3xl font-bold primary-gradient mb-6 sm:mb-8">Connect With Me</h3>
+              <SocialLinks />
+            </div>
           </div>
         </div>
       </div>

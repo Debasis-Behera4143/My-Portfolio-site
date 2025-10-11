@@ -25,20 +25,20 @@ const LandingPage = ({ showWelcome, setShowWelcome }) => (
       <>
         <Navbar />
         <AnimatedBackground />
-        <div id="Home"><Home /></div>
-        <div id="About"><About /></div>
-        <div id="Portfolio"><Portfolio /></div>
-        <div id="ResumeCV"><ResumeSection /></div>
-        <div id="Contact"><ContactPage /></div>
+        <div id="home"><Home /></div>
+        <div id="about"><About /></div>
+        <div id="portfolio"><Portfolio /></div>
+        <div id="resumecv"><ResumeSection /></div>
+        <div id="contact"><ContactPage /></div>
 
-        <footer>
+        <footer className="footer-premium py-10 mt-20">
           <center>
-            <hr className="my-3 border-gray-400 opacity-15 sm:mx-auto lg:my-6 text-center" />
-            <span className="block text-sm pb-4 text-gray-500 text-center dark:text-gray-400">
+            <hr className="my-6 border-[#2B6FFF]/30 sm:mx-auto lg:my-8 text-center w-3/4" />
+            <span className="block text-sm pb-6 text-[#B0B8C5] text-center">
               © 2025{" "}
               <a
                 href="https://www.linkedin.com/in/debasis-behera4143"
-                className="hover:underline"
+                className="hover:underline primary-gradient"
                 target="_blank"
                 rel="noreferrer"
               >
@@ -50,29 +50,6 @@ const LandingPage = ({ showWelcome, setShowWelcome }) => (
         </footer>
       </>
     )}
-  </>
-);
-
-const ProjectPageLayout = () => (
-  <>
-    <ProjectDetails />
-    <footer>
-      <center>
-        <hr className="my-3 border-gray-400 opacity-15 sm:mx-auto lg:my-6 text-center" />
-        <span className="block text-sm pb-4 text-gray-500 text-center dark:text-gray-400">
-          © 2025{" "}
-          <a
-            href="https://github.com/Debasis-Behera4143"
-            className="hover:underline"
-            target="_blank"
-            rel="noreferrer"
-          >
-            Debasis Behera
-          </a>
-          . All Rights Reserved.
-        </span>
-      </center>
-    </footer>
   </>
 );
 

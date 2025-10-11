@@ -1,7 +1,7 @@
-import GridTunnel from '../components/GridTunnel';
 import { useEffect, useRef } from "react";
 import Typed from "typed.js";
 import { motion } from "framer-motion";
+import { Code, Terminal, Cpu, Zap, Github, Linkedin, Mail, Download } from 'lucide-react';
 
 const Home = () => {
   const typedEl = useRef(null);
@@ -10,16 +10,15 @@ const Home = () => {
   useEffect(() => {
     const options = {
       strings: [
-        "B.Tech CSE Student at IGIT Sarang 💻",
-        "Full Stack Developer 🌐",
-        "DSA Enthusiast 🧠",
-        "Photography Lover",
-        "AI/ML Engineer",
-        "Creative Developer 🚀"
+        "Computer Science Student <span class='text-[#2B6FFF]'>💻</span>",
+        "Full Stack Developer <span class='text-[#DFFF00]'>🚀</span>",
+        "AI/ML Enthusiast <span class='text-[#DFFF00]'>🤖</span>",
+        "Problem Solver <span class='text-[#2B6FFF]'>🧠</span>",
+        "Tech Innovator <span class='text-[#DFFF00]'>⚡</span>"
       ],
-      typeSpeed: 70,
-      backSpeed: 40,
-      backDelay: 1200,
+      typeSpeed: 80,
+      backSpeed: 50,
+      backDelay: 1500,
       loop: true,
       smartBackspace: true,
       showCursor: true
@@ -34,73 +33,181 @@ const Home = () => {
 
   return (
     <>
-      <GridTunnel />
+      {/* NeoTech Particle Background */}
+      <div className="premium-background">
+        {[...Array(25)].map((_, i) => (
+          <div 
+            key={i}
+            className={`particle ${i % 4 === 0 ? 'accent' : i % 4 === 1 ? 'warm' : ''}`}
+            style={{
+              '--x': `${Math.random() * 100 - 50}vw`,
+              '--y': `${Math.random() * 100 - 50}vh`,
+              width: `${Math.random() * 100 + 20}px`,
+              height: `${Math.random() * 100 + 20}px`,
+              left: `${Math.random() * 100}%`,
+              top: `${Math.random() * 100}%`,
+              animationDelay: `${Math.random() * 10}s`,
+              animationDuration: `${20 + Math.random() * 20}s`
+            }}
+          />
+        ))}
+      </div>
 
       <section
         id="home"
-        className="flex flex-col-reverse md:flex-row items-center justify-center min-h-screen px-6 md:px-20 bg-gradient-to-b from-[#030014] to-[#06061a]"
+        className="flex flex-col items-center justify-center min-h-screen px-6 py-20 section-padding"
       >
-        {/* -------- Left Content -------- */}
+        {/* -------- Central Content -------- */}
         <motion.div
-          initial={{ opacity: 0, x: -40 }}
-          animate={{ opacity: 1, x: 0 }}
-          transition={{ duration: 0.8 }}
-          className="text-center md:text-left max-w-2xl"
+          initial={{ opacity: 0, y: 30 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 1 }}
+          className="text-center max-w-4xl fade-in-premium delay-200"
         >
-          <h1 className="text-4xl md:text-6xl font-bold text-white mb-2">
-            Hi, I’m{" "}
-            <span className="bg-gradient-to-r from-cyan-400 via-blue-300 to-purple-400 bg-clip-text text-transparent">
-              Debasis Behera
-            </span>
-          </h1>
+          {/* Profile Image with NeoTech Design */}
+          <motion.div
+            initial={{ opacity: 0, scale: 0.8 }}
+            animate={{ opacity: 1, scale: 1 }}
+            transition={{ duration: 0.8, delay: 0.2 }}
+            className="relative mb-12 flex justify-center"
+          >
+            <div className="relative">
+              <div className="absolute -inset-6 bg-gradient-to-r from-[#2B6FFF] via-[#DFFF00] to-[#2B6FFF] rounded-full blur-xl opacity-40 animate-pulse"></div>
+              <div className="relative rounded-full overflow-hidden border-4 border-[#2B6FFF]/30 shadow-2xl">
+                <img
+                  src={new URL('/Photo.jpg', import.meta.url).href}
+                  alt="Debasis Behera"
+                  className="w-64 h-64 lg:w-80 lg:h-80 object-cover"
+                />
+              </div>
+              <div className="absolute inset-0 rounded-full bg-gradient-to-t from-[#2B6FFF]/20 to-[#DFFF00]/20"></div>
+            </div>
+          </motion.div>
 
-          <h2
-            ref={typedEl}
-            className="text-lg md:text-2xl font-semibold bg-gradient-to-r from-cyan-300 via-blue-400 to-purple-400 bg-clip-text text-transparent drop-shadow-[0_0_10px_#22d3ee]"
-          ></h2>
+          {/* Welcome Text */}
+          <motion.h3
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ duration: 0.8, delay: 0.4 }}
+            className="text-2xl lg:text-3xl font-semibold text-[#B0B8C5] mb-4"
+          >
+            Welcome to my digital space
+          </motion.h3>
 
-          <p className="mt-4 text-gray-400 leading-relaxed">
-            I’m a{" "}
-            <span className="text-cyan-400">
-              Computer Science & Engineering
-            </span>{" "}
-            student passionate about building impactful web apps, mastering DSA in
-            C++, and exploring AI & innovative technologies. My journey combines
-            creativity, logic, and a deep curiosity to learn and create.
-          </p>
+          {/* Main Heading */}
+          <motion.h1
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8, delay: 0.6 }}
+            className="text-5xl lg:text-7xl font-bold text-white mb-6"
+          >
+            I'm <span className="primary-gradient">Debasis Behera</span>
+          </motion.h1>
 
-          <div className="mt-6 flex gap-4 justify-center md:justify-start">
+          {/* Typed Text */}
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8, delay: 0.8 }}
+          >
+            <h2
+              ref={typedEl}
+              className="text-2xl lg:text-4xl font-semibold primary-gradient drop-shadow-[0_0_20px_#2B6FFF]"
+            ></h2>
+          </motion.div>
+
+          {/* Description */}
+          <motion.p
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8, delay: 1 }}
+            className="mt-8 text-[#B0B8C5] leading-relaxed text-xl max-w-3xl mx-auto fade-in-premium delay-300"
+          >
+            I craft innovative digital solutions with cutting-edge technologies. 
+            Passionate about transforming complex problems into elegant, 
+            user-friendly applications that make a real impact.
+          </motion.p>
+
+          {/* Action Buttons */}
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8, delay: 1.2 }}
+            className="mt-12 flex flex-col sm:flex-row gap-6 justify-center items-center fade-in-premium delay-400"
+          >
             <a
-              href="#projects"
-              className="bg-cyan-500 text-black font-semibold px-6 py-2 rounded-xl hover:bg-cyan-400 transition"
+              href="#portfolio"
+              className="primary-button px-8 py-4 font-bold flex items-center justify-center gap-3 hover:scale-105 transition-transform text-lg"
             >
-              View Projects
+              <Zap className="w-5 h-5" />
+              <span>View My Work</span>
             </a>
             <a
               href="#contact"
-              className="border border-cyan-400 text-cyan-400 px-6 py-2 rounded-xl hover:bg-cyan-400 hover:text-black transition"
+              className="secondary-button px-8 py-4 font-bold flex items-center justify-center gap-3 hover:scale-105 transition-transform text-lg"
             >
-              Contact Me
+              <Mail className="w-5 h-5" />
+              <span>Get In Touch</span>
             </a>
-          </div>
+          </motion.div>
+
+          {/* Social Links */}
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8, delay: 1.4 }}
+            className="mt-12 flex justify-center gap-6"
+          >
+            <a
+              href="https://github.com/Debasis-Behera4143"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="p-4 rounded-full bg-[#121826] border border-[#2B6FFF]/30 hover:border-[#DFFF00] transition-all group"
+            >
+              <Github className="w-6 h-6 text-[#B0B8C5] group-hover:text-[#DFFF00] transition-colors" />
+            </a>
+            <a
+              href="https://www.linkedin.com/in/debasis-behera4143"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="p-4 rounded-full bg-[#121826] border border-[#2B6FFF]/30 hover:border-[#DFFF00] transition-all group"
+            >
+              <Linkedin className="w-6 h-6 text-[#B0B8C5] group-hover:text-[#DFFF00] transition-colors" />
+            </a>
+            <a
+              href="/Resume.pdf"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="p-4 rounded-full bg-[#121826] border border-[#2B6FFF]/30 hover:border-[#DFFF00] transition-all group"
+            >
+              <Download className="w-6 h-6 text-[#B0B8C5] group-hover:text-[#DFFF00] transition-colors" />
+            </a>
+          </motion.div>
+
+          {/* Scroll Indicator */}
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ duration: 0.8, delay: 1.6 }}
+            className="mt-20 flex flex-col items-center animate-bounce"
+          >
+            <span className="text-[#B0B8C5] text-sm mb-2">Explore my work</span>
+            <div className="w-8 h-12 rounded-full border-2 border-[#2B6FFF] flex justify-center p-1">
+              <div className="w-2 h-2 bg-[#2B6FFF] rounded-full animate-scroll"></div>
+            </div>
+          </motion.div>
         </motion.div>
 
-        {/* -------- Right Image -------- */}
-        <motion.div
-          initial={{ opacity: 0, x: 40 }}
-          animate={{ opacity: 1, x: 0 }}
-          transition={{ duration: 0.8 }}
-          className="flex justify-center mb-8 md:mb-0"
-        >
-          <div className="relative">
-            <img
-              src={new URL('/Photo.jpg', import.meta.url).href}
-              alt="Debasis Behera"
-              className="w-64 h-64 md:w-80 md:h-80 rounded-full object-cover border-4 border-cyan-400 shadow-[0_0_30px_#00ffff50]"
-            />
-            <div className="absolute inset-0 rounded-full bg-cyan-400 opacity-10 blur-2xl"></div>
-          </div>
-        </motion.div>
+        <style jsx>{`
+          @keyframes scroll {
+            0% { transform: translateY(0); }
+            30% { transform: translateY(15px); }
+            100% { transform: translateY(0); }
+          }
+          .animate-scroll {
+            animation: scroll 2s infinite;
+          }
+        `}</style>
       </section>
     </>
   );

@@ -1,53 +1,46 @@
 import React, { useEffect, memo, useMemo } from "react"
-import { FileText, Code, Award, Globe, ArrowUpRight, Sparkles, UserCheck } from "lucide-react"
+import { FileText, Code, Award, Zap } from "lucide-react"
 import AOS from 'aos'
 import 'aos/dist/aos.css'
 
 // Memoized Components
 const Header = memo(() => (
-  <div className="text-center lg:mb-8 mb-2 px-[5%]">
-    <div className="inline-block relative group">
+  <div className="text-center mb-16">
+    <div className="inline-block relative">
       <h2 
-        className="text-4xl md:text-5xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-[#6366f1] to-[#a855f7]" 
+        className="text-4xl lg:text-5xl font-bold text-center mx-auto primary-gradient" 
         data-aos="zoom-in-up"
-        data-aos-duration="600"
+        data-aos-duration="700"
       >
-        About Me
+        <Zap className="inline-block w-10 h-10 lg:w-12 lg:h-12 text-[#2B6FFF] mb-3" />
+        <span className="block mt-2">About Me</span>
       </h2>
     </div>
     <p 
-      className="mt-2 text-gray-400 max-w-2xl mx-auto text-base sm:text-lg flex items-center justify-center gap-2"
+      className="mt-6 text-[#B0B8C5] max-w-3xl mx-auto text-xl"
       data-aos="zoom-in-up"
-      data-aos-duration="800"
+      data-aos-duration="900"
     >
-      <Sparkles className="w-5 h-5 text-purple-400" />
-      Transforming ideas into digital experiences
-      <Sparkles className="w-5 h-5 text-purple-400" />
+      Transforming ideas into extraordinary digital experiences through code and creativity
     </p>
   </div>
 ));
 
 const ProfileImage = memo(() => (
-  <div className="flex justify-end items-center sm:p-12 sm:py-0 sm:pb-0 p-0 py-2 pb-2">
+  <div className="flex justify-center items-center py-8">
     <div 
       className="relative group" 
       data-aos="fade-up"
       data-aos-duration="1000"
     >
-      {/* Optimized gradient backgrounds with reduced complexity for mobile */}
-      <div className="absolute -inset-6 opacity-[25%] z-0 hidden sm:block">
-        <div className="absolute inset-0 bg-gradient-to-r from-violet-600 via-indigo-500 to-purple-600 rounded-full blur-2xl animate-spin-slower" />
-        <div className="absolute inset-0 bg-gradient-to-l from-fuchsia-500 via-rose-500 to-pink-600 rounded-full blur-2xl animate-pulse-slow opacity-50" />
-        <div className="absolute inset-0 bg-gradient-to-t from-blue-600 via-cyan-500 to-teal-400 rounded-full blur-2xl animate-float opacity-50" />
+      {/* Gradient backgrounds */}
+      <div className="absolute -inset-8 opacity-30 z-0">
+        <div className="absolute inset-0 bg-gradient-to-r from-[#2B6FFF] via-[#DFFF00] to-[#2B6FFF] rounded-full blur-2xl animate-pulse"></div>
       </div>
 
       <div className="relative">
-        <div className="w-72 h-72 sm:w-80 sm:h-80 rounded-full overflow-hidden shadow-[0_0_40px_rgba(120,119,198,0.3)] transform transition-all duration-700 group-hover:scale-105">
-          <div className="absolute inset-0 border-4 border-white/20 rounded-full z-20 transition-all duration-700 group-hover:border-white/40 group-hover:scale-105" />
-          
-          {/* Optimized overlay effects - disabled on mobile */}
-          <div className="absolute inset-0 bg-gradient-to-b from-black/20 via-transparent to-black/40 z-10 transition-opacity duration-700 group-hover:opacity-0 hidden sm:block" />
-          <div className="absolute inset-0 bg-gradient-to-t from-purple-500/20 via-transparent to-blue-500/20 z-10 opacity-0 group-hover:opacity-100 transition-opacity duration-700 hidden sm:block" />
+        <div className="w-64 h-64 lg:w-80 lg:h-80 rounded-full overflow-hidden shadow-2xl transform transition-all duration-500 group-hover:scale-105 border-4 border-[#2B6FFF]/40">
+          <div className="absolute inset-0 bg-gradient-to-b from-black/20 via-transparent to-black/40 z-10 transition-opacity duration-500 group-hover:opacity-0"></div>
           
           {(() => {
             const photoUrl = new URL('/Photo.jpg', import.meta.url).href;
@@ -55,62 +48,11 @@ const ProfileImage = memo(() => (
               <img
                 src={photoUrl}
                 alt="Profile"
-                className="w-full h-full object-cover transition-all duration-700 group-hover:scale-110 group-hover:rotate-2"
+                className="w-full h-full object-cover transition-all duration-500 group-hover:scale-110"
                 loading="lazy"
               />
             );
           })()}
-
-          {/* Advanced hover effects - desktop only */}
-          <div className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-all duration-700 z-20 hidden sm:block">
-            <div className="absolute inset-0 bg-gradient-to-tr from-transparent via-white/20 to-transparent transform -translate-x-full group-hover:translate-x-full transition-transform duration-1000" />
-            <div className="absolute inset-0 bg-gradient-to-bl from-transparent via-white/10 to-transparent transform translate-y-full group-hover:-translate-y-full transition-transform duration-1000 delay-100" />
-            <div className="absolute inset-0 rounded-full border-8 border-white/10 scale-0 group-hover:scale-100 transition-transform duration-700 animate-pulse-slow" />
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-));
-
-const StatCard = memo(({ icon: Icon, color, value, label, description, animation }) => (
-  <div data-aos={animation} data-aos-duration={1300} className="relative group">
-    <div className="relative z-10 bg-gray-900/50 backdrop-blur-lg rounded-2xl p-6 border border-white/10 overflow-hidden transition-all duration-300 hover:scale-105 hover:shadow-2xl h-full flex flex-col justify-between">
-      <div className={`absolute -z-10 inset-0 bg-gradient-to-br ${color} opacity-10 group-hover:opacity-20 transition-opacity duration-300`}></div>
-      
-      <div className="flex items-center justify-between mb-4">
-        <div className="w-16 h-16 rounded-full flex items-center justify-center bg-white/10 transition-transform group-hover:rotate-6">
-          <Icon className="w-8 h-8 text-white" />
-        </div>
-        <span 
-          className="text-4xl font-bold text-white"
-          data-aos="fade-up-left"
-          data-aos-duration="1500"
-          data-aos-anchor-placement="top-bottom"
-        >
-          {value}
-        </span>
-      </div>
-
-      <div>
-        <p 
-          className="text-sm uppercase tracking-wider text-gray-300 mb-2"
-          data-aos="fade-up"
-          data-aos-duration="800"
-          data-aos-anchor-placement="top-bottom"
-        >
-          {label}
-        </p>
-        <div className="flex items-center justify-between">
-          <p 
-            className="text-xs text-gray-400"
-            data-aos="fade-up"
-            data-aos-duration="1000"
-            data-aos-anchor-placement="top-bottom"
-          >
-            {description}
-          </p>
-          <ArrowUpRight className="w-4 h-4 text-white/50 group-hover:text-white transition-colors" />
         </div>
       </div>
     </div>
@@ -137,199 +79,99 @@ const AboutPage = () => {
 
   // Optimized AOS initialization
   useEffect(() => {
-    const initAOS = () => {
-      AOS.init({
-        once: false, 
-      });
-    };
-
-    initAOS();
-    
-    // Debounced resize handler
-    let resizeTimer;
-    const handleResize = () => {
-      clearTimeout(resizeTimer);
-      resizeTimer = setTimeout(initAOS, 250);
-    };
-
-    window.addEventListener('resize', handleResize);
-    return () => {
-      window.removeEventListener('resize', handleResize);
-      clearTimeout(resizeTimer);
-    };
+    AOS.init({
+      once: false, 
+    });
   }, []);
-
-  // Memoized stats data
-  const statsData = useMemo(() => [
-    {
-      icon: Code,
-      color: "from-[#6366f1] to-[#a855f7]",
-      value: totalProjects,
-      label: "Total Projects",
-      description: "Innovative web solutions crafted",
-      animation: "fade-right",
-    },
-    {
-      icon: Award,
-      color: "from-[#a855f7] to-[#6366f1]",
-      value: totalCertificates,
-      label: "Certificates",
-      description: "Professional skills validated",
-      animation: "fade-up",
-    },
-    {
-      icon: Globe,
-      color: "from-[#6366f1] to-[#a855f7]",
-      value: YearExperience,
-      label: "Years of Experience",
-      description: "Continuous learning journey",
-      animation: "fade-left",
-    },
-  ], [totalProjects, totalCertificates, YearExperience]);
 
   return (
     <div
-      className="h-auto pb-[10%] text-white overflow-hidden px-[5%] sm:px-[5%] lg:px-[10%] mt-10 sm-mt-0" 
+      className="h-auto pb-16 text-white overflow-hidden px-[5%] lg:px-[12%] mt-16 section-padding" 
       id="About"
     >
       <Header />
+      
+      <div className="w-full mx-auto pt-8 lg:pt-12 relative">
+        <ProfileImage />
 
-      <div className="w-full mx-auto pt-8 sm:pt-12 relative">
-        <div className="flex flex-col-reverse lg:grid lg:grid-cols-2 gap-10 lg:gap-16 items-center">
-          <div className="space-y-6 text-center lg:text-left">
+        <div className="max-w-4xl mx-auto">
+          <div className="premium-card p-8 rounded-2xl mb-12">
             <h2 
-              className="text-3xl sm:text-4xl lg:text-5xl font-bold"
+              className="text-3xl lg:text-4xl font-bold mb-6"
               data-aos="fade-right"
-              data-aos-duration="1000"
+              data-aos-duration="800"
             >
-              <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#6366f1] to-[#a855f7]">
-                Hello, I'm
-              </span>
-              <span 
-                className="block mt-2 text-gray-200"
-                data-aos="fade-right"
-                data-aos-duration="1300"
-              >
-                Debasis Behera
+              <span className="primary-gradient">
+                Hello, I'm Debasis Behera
               </span>
             </h2>
             
             <div 
-              className="text-base sm:text-lg lg:text-xl text-gray-400 leading-relaxed text-justify pb-4 sm:pb-0 space-y-4"
-              data-aos="fade-right"
-              data-aos-duration="1500"
+              className="text-lg lg:text-xl text-[#B0B8C5] leading-relaxed space-y-6"
+              data-aos="fade-up"
+              data-aos-duration="1000"
             >
               <p>
-                Hi! I'm <span className="text-gray-200 font-semibold">Debasis Behera</span>, a passionate <span className="text-gray-200">Computer Science & Engineering student</span> currently pursuing my <span className="text-gray-200">B.Tech at Indira Gandhi Institute of Technology (IGIT), Sarang</span>. I love exploring the world of technology, solving problems through <span className="text-gray-200">coding</span>, and bringing creative ideas to life through <span className="text-gray-200">projects</span>.
+                I'm a <span className="text-white font-bold">Computer Science & Engineering student</span> at Indira Gandhi Institute of Technology, Sarang, passionate about exploring the frontiers of technology and solving complex problems through <span className="text-white">elegant coding</span>.
               </p>
               <p>
-                I started my learning journey by mastering the basics of <span className="text-gray-200">C++</span>, and I’m now diving deep into <span className="text-gray-200">Data Structures & Algorithms (DSA)</span> to strengthen my problem-solving skills. Alongside this, I’ve been working on real-time projects like a <span className="text-gray-200">Salesforce website clone</span> (using HTML & CSS) and an interactive <span className="text-gray-200">Shapes Game</span> (using JavaScript).
+                My journey began with mastering <span className="text-white">C++</span> and <span className="text-white">Data Structures & Algorithms</span>, and I'm now delving deep into <span className="text-white">Full Stack Development</span> and <span className="text-white">AI/ML technologies</span>.
               </p>
               <p>
-                I’m also exploring <span className="text-gray-200">Graph Analytics</span> and <span className="text-gray-200">Generative AI</span>, and continuously improving my knowledge of <span className="text-gray-200">Java</span> (OOP, GUI, Applet, Swing) and <span className="text-gray-200">Python</span> (OOP, file handling, regex, CSV, etc.).
+                I'm currently working on innovative projects that blend creativity with technical precision, always aiming to craft transformative products that make a meaningful impact.
               </p>
-              <p>
-                Beyond academics, I’m a <span className="text-gray-200">passionate photographer</span>, always trying to capture the perfect frame that tells a story.
-              </p>
-              <p>
-                My ultimate goal is to become <span className="text-gray-200">industry-ready</span>, combine creativity with logic, and build impactful products that make a difference.
-              </p>
-
-              <div className="pt-2 space-y-3">
-                <h3 className="text-lg sm:text-xl text-gray-200 font-semibold">What I’m Currently Working On</h3>
-                <ul className="list-disc pl-5 space-y-1">
-                  <li>Learning <span className="text-gray-200">DSA in C++</span> with a perfectionist approach</li>
-                  <li>Building a <span className="text-gray-200">Resume Builder Web App</span> with premium features</li>
-                  <li>Preparing for <span className="text-gray-200">GSSoC</span> and future <span className="text-gray-200">full-stack development roles</span></li>
-                  <li>Developing <span className="text-gray-200">real-time, practical projects</span> to enhance skills</li>
-                </ul>
-              </div>
-
-              <div className="pt-2 space-y-3">
-                <h3 className="text-lg sm:text-xl text-gray-200 font-semibold">Interests</h3>
-                <ul className="list-disc pl-5 space-y-1">
-                  <li>Coding & Problem Solving</li>
-                  <li>Web Development</li>
-                  <li>Generative AI & Graph Analytics</li>
-                  <li>Photography & Design</li>
-                </ul>
-              </div>
-            </div>
-
-               {/* Quote Section */}
-      <div 
-        className="relative bg-gradient-to-br from-[#6366f1]/5 via-transparent to-[#a855f7]/5 border border-gradient-to-r border-[#6366f1]/30 rounded-2xl p-4 my-6 backdrop-blur-md shadow-2xl overflow-hidden"
-        data-aos="fade-up"
-        data-aos-duration="1700"
-      >
-        {/* Floating orbs background */}
-        <div className="absolute top-2 right-4 w-16 h-16 bg-gradient-to-r from-[#6366f1]/20 to-[#a855f7]/20 rounded-full blur-xl"></div>
-        <div className="absolute -bottom-4 -left-2 w-12 h-12 bg-gradient-to-r from-[#a855f7]/20 to-[#6366f1]/20 rounded-full blur-lg"></div>
-        
-        {/* Quote icon */}
-        <div className="absolute top-3 left-4 text-[#6366f1] opacity-30">
-          <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
-            <path d="M14.017 21v-7.391c0-5.704 3.731-9.57 8.983-10.609l.995 2.151c-2.432.917-3.995 3.638-3.995 5.849h4v10h-9.983zm-14.017 0v-7.391c0-5.704 3.748-9.57 9-10.609l.996 2.151c-2.433.917-3.996 3.638-3.996 5.849h4v10h-10z"/>
-          </svg>
-        </div>
-        
-        <blockquote className="text-gray-300 text-center lg:text-left italic font-medium text-sm relative z-10 pl-6">
-          "Leveraging AI as a professional tool, not a replacement."
-        </blockquote>
-      </div>
-
-            <div className="flex flex-col lg:flex-row items-center lg:items-start gap-4 lg:gap-4 lg:px-0 w-full">
-              <a href="https://www.linkedin.com/in/debasis-behera4143" className="w-full lg:w-auto" target="_blank" rel="noreferrer">
-              <button 
-                data-aos="fade-up"
-                data-aos-duration="800"
-                className="w-full lg:w-auto sm:px-6 py-2 sm:py-3 rounded-lg bg-gradient-to-r from-[#6366f1] to-[#a855f7] text-white font-medium transition-all duration-300 hover:scale-105 flex items-center justify-center lg:justify-start gap-2 shadow-lg hover:shadow-xl "
-              >
-                <FileText className="w-4 h-4 sm:w-5 sm:h-5" /> LinkedIn Profile
-              </button>
-              </a>
-              <a href="#Portofolio" className="w-full lg:w-auto">
-              <button 
-                data-aos="fade-up"
-                data-aos-duration="1000"
-                className="w-full lg:w-auto sm:px-6 py-2 sm:py-3 rounded-lg border border-[#a855f7]/50 text-[#a855f7] font-medium transition-all duration-300 hover:scale-105 flex items-center justify-center lg:justify-start gap-2 hover:bg-[#a855f7]/10 "
-              >
-                <Code className="w-4 h-4 sm:w-5 sm:h-5" /> View Projects
-              </button>
-              </a>
             </div>
           </div>
 
-          <ProfileImage />
-        </div>
-
-        <a href="#Portofolio">
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mt-16 cursor-pointer">
-            {statsData.map((stat) => (
-              <StatCard key={stat.label} {...stat} />
-            ))}
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-12">
+            <div 
+              className="premium-card p-6 rounded-2xl text-center"
+              data-aos="fade-up"
+              data-aos-duration="800"
+              data-aos-delay="100"
+            >
+              <Code className="w-12 h-12 text-[#2B6FFF] mx-auto mb-4" />
+              <div className="text-3xl font-bold primary-gradient mb-2">{totalProjects}+</div>
+              <div className="text-[#B0B8C5]">Projects</div>
+            </div>
+            
+            <div 
+              className="premium-card p-6 rounded-2xl text-center"
+              data-aos="fade-up"
+              data-aos-duration="800"
+              data-aos-delay="200"
+            >
+              <Award className="w-12 h-12 text-[#2B6FFF] mx-auto mb-4" />
+              <div className="text-3xl font-bold primary-gradient mb-2">{totalCertificates}+</div>
+              <div className="text-[#B0B8C5]">Certificates</div>
+            </div>
+            
+            <div 
+              className="premium-card p-6 rounded-2xl text-center"
+              data-aos="fade-up"
+              data-aos-duration="800"
+              data-aos-delay="300"
+            >
+              <FileText className="w-12 h-12 text-[#2B6FFF] mx-auto mb-4" />
+              <div className="text-3xl font-bold primary-gradient mb-2">{YearExperience}+</div>
+              <div className="text-[#B0B8C5]">Years Experience</div>
+            </div>
           </div>
-        </a>
-      </div>
 
-      <style jsx>{`
-        @keyframes float {
-          0%, 100% { transform: translateY(0); }
-          50% { transform: translateY(-20px); }
-        }
-        @keyframes spin-slower {
-          to { transform: rotate(360deg); }
-        }
-        .animate-bounce-slow {
-          animation: bounce 3s infinite;
-        }
-        .animate-pulse-slow {
-          animation: pulse 3s infinite;
-        }
-        .animate-spin-slower {
-          animation: spin-slower 8s linear infinite;
-        }
-      `}</style>
+          <div className="text-center">
+            <a 
+              href="https://www.linkedin.com/in/debasis-behera4143" 
+              target="_blank" 
+              rel="noreferrer"
+              className="inline-block primary-button px-8 py-4 font-bold text-lg rounded-xl hover:scale-105 transition-transform"
+              data-aos="fade-up"
+              data-aos-duration="800"
+            >
+              View LinkedIn Profile
+            </a>
+          </div>
+        </div>
+      </div>
     </div>
   );
 };

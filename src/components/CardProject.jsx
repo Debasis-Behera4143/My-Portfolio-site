@@ -1,6 +1,7 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import { ExternalLink, ArrowRight, Github } from "lucide-react";
+import { ExternalLink, ArrowRight, Github, Eye } from "lucide-react";
+import PropTypes from "prop-types";
 
 const CardProject = ({ Img, Title, Description, Link: ProjectLink, Github: GithubLink, Tech, id }) => {
   const handleLiveDemo = (e) => {
@@ -18,60 +19,63 @@ const CardProject = ({ Img, Title, Description, Link: ProjectLink, Github: Githu
   };
 
   return (
-    <div className="group relative w-full">
-      <div className="relative overflow-hidden rounded-xl bg-gradient-to-br from-slate-900/90 to-slate-800/90 backdrop-blur-lg border border-white/10 shadow-2xl transition-all duration-300 hover:shadow-purple-500/20">
-        <div className="absolute inset-0 bg-gradient-to-br from-blue-500/10 via-purple-500/10 to-pink-500/10 opacity-50 group-hover:opacity-70 transition-opacity duration-300"></div>
+    <div className="group relative w-full h-full">
+      <div className="premium-project-card h-full flex flex-col">
+        {/* Project Image */}
+        <div className="relative overflow-hidden rounded-t-2xl">
+          <img
+            src={Img}
+            alt={Title}
+            className="w-full h-48 object-cover transition-transform duration-500 group-hover:scale-105"
+          />
+          <div className="absolute inset-0 bg-gradient-to-t from-[#0B0F19]/80 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+        </div>
 
-        <div className="relative p-5 z-10 flex flex-col h-full">
-          {/* Project Image */}
-          <div className="relative overflow-hidden rounded-lg">
-            <img
-              src={Img}
-              alt={Title}
-              className="w-full h-48 object-cover transform group-hover:scale-105 transition-transform duration-500"
-            />
-          </div>
-
+        {/* Content */}
+        <div className="p-6 flex flex-col flex-grow">
           {/* Title & Description */}
-          <div className="mt-4 space-y-3 flex-grow">
-            <h3 className="text-xl font-semibold bg-gradient-to-r from-blue-200 via-purple-200 to-pink-200 bg-clip-text text-transparent">
+          <div className="space-y-4 flex-grow">
+            <h3 className="text-2xl font-bold primary-gradient">
               {Title}
             </h3>
-            <p className="text-gray-300/80 text-sm leading-relaxed line-clamp-3">
+            <p className="text-[#B0B8C5] text-base leading-relaxed">
               {Description}
             </p>
 
             {/* Tech Stack */}
             {Tech && Tech.length > 0 && (
-              <div className="flex flex-wrap gap-2 mt-2">
-                {Tech.map((tech, i) => (
+              <div className="flex flex-wrap gap-2 mt-4">
+                {Tech.slice(0, 3).map((tech, i) => (
                   <span
                     key={i}
-                    className="px-2 py-1 bg-gray-700 rounded text-xs text-slate-200"
+                    className="px-3 py-1 bg-[#121826] border border-[#2B6FFF]/30 rounded-full text-xs text-[#2B6FFF]"
                   >
                     {tech}
                   </span>
                 ))}
+                {Tech.length > 3 && (
+                  <span className="px-3 py-1 bg-[#121826] border border-[#DFFF00]/30 rounded-full text-xs text-[#DFFF00]">
+                    +{Tech.length - 3} more
+                  </span>
+                )}
               </div>
             )}
           </div>
 
           {/* Buttons */}
-          <div className="pt-4 flex items-center justify-between">
-            <div className="flex gap-4">
+          <div className="pt-6 mt-4 flex items-center justify-between border-t border-[#2B6FFF]/20">
+            <div className="flex gap-3">
               {GithubLink ? (
                 <a
                   href={GithubLink}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="inline-flex items-center space-x-2 text-gray-300 hover:text-white transition-colors duration-200"
+                  className="p-2 rounded-lg bg-[#121826] hover:bg-[#2B6FFF]/20 transition-colors"
+                  title="View Source Code"
                 >
-                  <Github className="w-4 h-4" />
-                  <span className="text-sm font-medium">GitHub</span>
+                  <Github className="w-5 h-5 text-[#B0B8C5] hover:text-white" />
                 </a>
-              ) : (
-                <span className="text-gray-500 text-sm">No GitHub</span>
-              )}
+              ) : null}
 
               {ProjectLink ? (
                 <a
@@ -79,33 +83,40 @@ const CardProject = ({ Img, Title, Description, Link: ProjectLink, Github: Githu
                   target="_blank"
                   rel="noopener noreferrer"
                   onClick={handleLiveDemo}
-                  className="inline-flex items-center space-x-2 text-blue-400 hover:text-blue-300 transition-colors duration-200"
+                  className="p-2 rounded-lg bg-[#121826] hover:bg-[#2B6FFF]/20 transition-colors"
+                  title="Live Demo"
                 >
-                  <span className="text-sm font-medium">Live Demo</span>
-                  <ExternalLink className="w-4 h-4" />
+                  <Eye className="w-5 h-5 text-[#B0B8C5] hover:text-white" />
                 </a>
-              ) : (
-                <span className="text-gray-500 text-sm">Demo Not Available</span>
-              )}
+              ) : null}
             </div>
 
             {id ? (
               <Link
                 to={`/project/${id}`}
                 onClick={handleDetails}
-                className="inline-flex items-center space-x-2 px-4 py-2 rounded-lg bg-white/5 hover:bg-white/10 text-white/90 transition-all duration-200 hover:scale-105 active:scale-95 focus:outline-none focus:ring-2 focus:ring-purple-500/50"
+                className="flex items-center gap-2 text-[#2B6FFF] hover:text-[#DFFF00] font-medium text-sm transition-colors"
               >
-                <span className="text-sm font-medium">Details</span>
+                <span>Details</span>
                 <ArrowRight className="w-4 h-4" />
               </Link>
-            ) : (
-              <span className="text-gray-500 text-sm">Details Not Available</span>
-            )}
+            ) : null}
           </div>
         </div>
       </div>
     </div>
   );
+};
+
+// Add PropTypes
+CardProject.propTypes = {
+  Img: PropTypes.string,
+  Title: PropTypes.string,
+  Description: PropTypes.string,
+  Link: PropTypes.string,
+  Github: PropTypes.string,
+  Tech: PropTypes.array,
+  id: PropTypes.number,
 };
 
 export default CardProject;
