@@ -12,6 +12,21 @@ A premium animated portfolio designed to showcase technical expertise and creati
 - Smooth scrolling navigation
 - Dark mode aesthetic
 
+- ## Featured Projects
+
+### 1. Gamified Learning Platform (Frontend)
+**Tech Stack:** `SolidJS` `UnoCSS` `Vite` `Anime.js` `PWA` `Bun`
+Modern interactive learning platform for rural education built with SolidJS and advanced animations for enhanced user engagement.
+
+### 2. Face Recognition System
+**Tech Stack:** `Python` `OpenCV` `Computer Vision` `ML`
+End-to-end facial recognition system with data collection, detection, and real-time classification modules for biometric applications.
+
+### 3. Personal Portfolio Website
+**Tech Stack:** `React` `Vite` `Tailwind CSS` `Framer Motion` `Supabase`
+Responsive animated portfolio showcasing projects and technical skills with interactive components and Supabase-powered comments.
+
+
 ## Getting Started
 
 ### Prerequisites
