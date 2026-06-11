@@ -41,7 +41,7 @@ const ContactPage = () => {
     });
 
     try {
-      const formSubmitUrl = 'https://formsubmit.co/debasisbehera1508@gmail.com';
+      const formSubmitUrl = 'https://formsubmit.co/ajax/debasisbehera1508@gmail.com';
       const submitData = new FormData();
       submitData.append('name', formData.name);
       submitData.append('email', formData.email);
