@@ -41,35 +41,39 @@ const ContactPage = () => {
     });
 
     try {
-      const formSubmitUrl = 'https://formsubmit.co/ajax/debasisbehera1508@gmail.com';
+      const formSubmitUrl = 'https://api.web3forms.com/submit';
       const submitData = new FormData();
+      // NOTE: Replace this with your actual Web3Forms access key
+      submitData.append('access_key', '4befb1cd-0e92-4dae-b80f-66b5476f58bc');
       submitData.append('name', formData.name);
       submitData.append('email', formData.email);
       submitData.append('message', formData.message);
-      submitData.append('_subject', 'Portfolio Contact - Debasis Behera');
-      submitData.append('_captcha', 'false');
-      submitData.append('_template', 'table');
+      submitData.append('subject', 'New Contact Message from Portfolio');
 
-      await axios.post(formSubmitUrl, submitData, {
+      const response = await axios.post(formSubmitUrl, submitData, {
         headers: {
           'Content-Type': 'multipart/form-data',
         },
       });
 
-      Swal.fire({
-        title: 'Message Sent!',
-        text: 'Your message has been sent successfully. I will get back to you shortly!',
-        icon: 'success',
-        confirmButtonColor: '#0A3D91',
-        timer: 3000,
-        timerProgressBar: true
-      });
+      if (response.data.success) {
+        Swal.fire({
+          title: 'Message Sent!',
+          text: 'Your message has been sent successfully. I will get back to you shortly!',
+          icon: 'success',
+          confirmButtonColor: '#0A3D91',
+          timer: 3000,
+          timerProgressBar: true
+        });
 
-      setFormData({
-        name: "",
-        email: "",
-        message: "",
-      });
+        setFormData({
+          name: "",
+          email: "",
+          message: "",
+        });
+      } else {
+        throw new Error("Failed to send message");
+      }
 
     } catch (error) {
       Swal.fire({
