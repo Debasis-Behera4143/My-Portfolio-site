@@ -1,215 +1,116 @@
-import { useEffect, useRef } from "react";
-import Typed from "typed.js";
-import { motion } from "framer-motion";
-import { Code, Terminal, Cpu, Zap, Github, Linkedin, Mail, Download } from 'lucide-react';
+import React from "react";
+import { ArrowRight, FileText, CheckCircle2 } from 'lucide-react';
 
 const Home = () => {
-  const typedEl = useRef(null);
-  const typedInstance = useRef(null);
-
-  useEffect(() => {
-    const options = {
-      strings: [
-        "Computer Science Student <span class='text-[#2B6FFF]'>💻</span>",
-        "Full Stack Developer <span class='text-[#DFFF00]'>🚀</span>",
-        "AI/ML Enthusiast <span class='text-[#DFFF00]'>🤖</span>",
-        "Problem Solver <span class='text-[#2B6FFF]'>🧠</span>",
-        "Tech Innovator <span class='text-[#DFFF00]'>⚡</span>"
-      ],
-      typeSpeed: 80,
-      backSpeed: 50,
-      backDelay: 1500,
-      loop: true,
-      smartBackspace: true,
-      showCursor: true
-    };
-
-    typedInstance.current = new Typed(typedEl.current, options);
-
-    return () => {
-      typedInstance.current.destroy();
-    };
-  }, []);
-
   return (
-    <>
-      {/* NeoTech Particle Background */}
-      <div className="premium-background">
-        {[...Array(25)].map((_, i) => (
-          <div 
-            key={i}
-            className={`particle ${i % 4 === 0 ? 'accent' : i % 4 === 1 ? 'warm' : ''}`}
-            style={{
-              '--x': `${Math.random() * 100 - 50}vw`,
-              '--y': `${Math.random() * 100 - 50}vh`,
-              width: `${Math.random() * 100 + 20}px`,
-              height: `${Math.random() * 100 + 20}px`,
-              left: `${Math.random() * 100}%`,
-              top: `${Math.random() * 100}%`,
-              animationDelay: `${Math.random() * 10}s`,
-              animationDuration: `${20 + Math.random() * 20}s`
-            }}
-          />
-        ))}
-      </div>
+    <div id="home" className="bg-transparent">
+      {/* Hero / Landing Section */}
+      <section className="relative flex items-center min-h-[90vh] px-[5%] lg:px-[12%] pt-32 pb-16 overflow-hidden">
+        
+        {/* Blueprint Grid Background */}
+        <div className="absolute inset-0 blueprint-grid-system opacity-[0.03]" />
 
-      <section
-        id="home"
-        className="flex flex-col items-center justify-center min-h-screen px-6 py-20 section-padding"
-      >
-        {/* -------- Central Content -------- */}
-        <motion.div
-          initial={{ opacity: 0, y: 30 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 1 }}
-          className="text-center max-w-4xl fade-in-premium delay-200"
-        >
-          {/* Profile Image with NeoTech Design */}
-          <motion.div
-            initial={{ opacity: 0, scale: 0.8 }}
-            animate={{ opacity: 1, scale: 1 }}
-            transition={{ duration: 0.8, delay: 0.2 }}
-            className="relative mb-12 flex justify-center"
-          >
-            <div className="relative">
-              <div className="absolute -inset-6 bg-gradient-to-r from-[#2B6FFF] via-[#DFFF00] to-[#2B6FFF] rounded-full blur-xl opacity-40 animate-pulse"></div>
-              <div className="relative rounded-full overflow-hidden border-4 border-[#2B6FFF]/30 shadow-2xl">
-                <img
-                  src={new URL('/Photo.jpg', import.meta.url).href}
-                  alt="Debasis Behera"
-                  className="w-64 h-64 lg:w-80 lg:h-80 object-cover"
-                />
+        
+        {/* Subtle light-blue gradient accent */}
+        <div className="absolute top-0 right-0 w-[60%] h-[60%] bg-gradient-to-br from-blue-50/25 to-transparent blur-3xl pointer-events-none z-0" />
+        
+        <div className="container mx-auto grid grid-cols-1 lg:grid-cols-12 gap-12 items-center relative z-10">
+          
+          {/* Left Column: Narrative & Details */}
+          <div className="lg:col-span-7 space-y-6 text-left">
+            
+            {/* Small Label */}
+            <div className="space-y-1">
+              <span className="inline-block px-3 py-1 rounded-full bg-blue-50 border border-blue-100 text-xs font-bold uppercase tracking-widest text-[#0A3D91] technical-label">
+                AI/ML ENGINEER • FULL STACK DEVELOPER
+              </span>
+            </div>
+
+            {/* Large Heading */}
+            <h1 className="text-5xl md:text-6xl lg:text-7xl font-extrabold tracking-tight text-slate-900 leading-none">
+              Hi, I'm <span className="text-gradient-navy">Debasis Behera.</span>
+            </h1>
+            
+            {/* Subheading */}
+            <h2 className="text-xl lg:text-2xl font-bold text-slate-800 tracking-tight leading-tight technical-label">
+              AI/ML Engineer, Full Stack Developer, and Student Leader passionate about building intelligent systems and useful software.
+            </h2>
+
+            {/* Body Text / Vision Statement */}
+            <div className="space-y-4 text-base lg:text-lg text-slate-600 leading-relaxed max-w-2xl font-light">
+              <p>
+                Bridging the gap between artificial intelligence and scalable software. I specialize in building end-to-end systems—from training deep learning models and architecting backend infrastructure, to designing fluid user experiences.
+              </p>
+              <p className="font-medium text-slate-700">
+                I focus on writing clean code and shipping products that matter.
+              </p>
+            </div>
+
+            {/* Action Buttons */}
+            <div className="flex flex-col sm:flex-row gap-4 pt-4">
+              <a
+                href="#portfolio"
+                className="elite-btn-primary px-6 py-3.5 text-xs font-bold uppercase tracking-wider flex items-center justify-center gap-2 technical-label"
+              >
+                <span>View Projects</span>
+                <ArrowRight className="w-4 h-4" />
+              </a>
+              <a
+                href="#resumecv"
+                className="elite-btn-secondary px-6 py-3.5 text-xs font-bold uppercase tracking-wider flex items-center justify-center gap-2 technical-label"
+              >
+                <FileText className="w-4 h-4 text-slate-500" />
+                <span>Download Resume</span>
+              </a>
+            </div>
+
+          </div>
+
+          {/* Right Column: Architectural Photograph Frame */}
+          <div className="lg:col-span-5 flex justify-center items-center">
+            <div className="relative w-full max-w-[360px] aspect-[4/5]">
+              
+              {/* Subtle Blueprint grid background lines specifically for the photo */}
+              <div className="absolute inset-0 border border-slate-200/80 rounded-2xl p-4 bg-slate-50/50 shadow-sm z-0">
+                <div className="absolute inset-2 border border-dashed border-slate-200 pointer-events-none" />
+                <div className="absolute top-1/2 left-0 right-0 h-[1px] bg-slate-200 pointer-events-none" />
+                <div className="absolute left-1/2 top-0 bottom-0 w-[1px] bg-slate-200 pointer-events-none" />
               </div>
-              <div className="absolute inset-0 rounded-full bg-gradient-to-t from-[#2B6FFF]/20 to-[#DFFF00]/20"></div>
+              
+              {/* Photo Image Frame */}
+              <div className="absolute inset-3 rounded-xl overflow-hidden border-2 border-slate-300 bg-slate-100 z-10 group shadow-lg">
+                <img
+                  src="/Photo.jpg"
+                  alt="Debasis Behera"
+                  className="w-full h-full object-cover grayscale-[20%] contrast-[105%] group-hover:scale-105 transition-transform duration-700"
+                  onError={(e) => {
+                    // Fallback to PROFILE.jpg if Photo.jpg fails
+                    e.target.src = "/PROFILE.jpg";
+                  }}
+                />
+                
+                {/* Overlay Architectural coordinates / alignment grid */}
+                <div className="absolute inset-0 pointer-events-none border border-white/20" />
+                
+                {/* SVG Blueprint alignment mark corners */}
+                <div className="absolute top-2 left-2 w-4 h-4 border-t border-l border-white/60 pointer-events-none" />
+                <div className="absolute top-2 right-2 w-4 h-4 border-t border-r border-white/60 pointer-events-none" />
+                <div className="absolute bottom-2 left-2 w-4 h-4 border-b border-l border-white/60 pointer-events-none" />
+                <div className="absolute bottom-2 right-2 w-4 h-4 border-b border-r border-white/60 pointer-events-none" />
+              </div>
+
+              {/* Decorative Blueprint Labels */}
+              <div className="absolute -bottom-6 left-4 right-4 flex justify-between text-[9px] font-bold text-slate-400 uppercase tracking-widest technical-label z-20 pointer-events-none">
+                <span>COORD: 20.95° N, 85.15° E</span>
+                <span>SYS_REF: PORTRAIT_01</span>
+              </div>
+
             </div>
-          </motion.div>
+          </div>
 
-          {/* Welcome Text */}
-          <motion.h3
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ duration: 0.8, delay: 0.4 }}
-            className="text-2xl lg:text-3xl font-semibold text-[#B0B8C5] mb-4"
-          >
-            Welcome to my digital space
-          </motion.h3>
-
-          {/* Main Heading */}
-          <motion.h1
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, delay: 0.6 }}
-            className="text-5xl lg:text-7xl font-bold text-white mb-6"
-          >
-            I'm <span className="primary-gradient">Debasis Behera</span>
-          </motion.h1>
-
-          {/* Typed Text */}
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, delay: 0.8 }}
-          >
-            <h2
-              ref={typedEl}
-              className="text-2xl lg:text-4xl font-semibold primary-gradient drop-shadow-[0_0_20px_#2B6FFF]"
-            ></h2>
-          </motion.div>
-
-          {/* Description */}
-          <motion.p
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, delay: 1 }}
-            className="mt-8 text-[#B0B8C5] leading-relaxed text-xl max-w-3xl mx-auto fade-in-premium delay-300"
-          >
-            I craft innovative digital solutions with cutting-edge technologies. 
-            Passionate about transforming complex problems into elegant, 
-            user-friendly applications that make a real impact.
-          </motion.p>
-
-          {/* Action Buttons */}
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, delay: 1.2 }}
-            className="mt-12 flex flex-col sm:flex-row gap-6 justify-center items-center fade-in-premium delay-400"
-          >
-            <a
-              href="#portfolio"
-              className="primary-button px-8 py-4 font-bold flex items-center justify-center gap-3 hover:scale-105 transition-transform text-lg"
-            >
-              <Zap className="w-5 h-5" />
-              <span>View My Work</span>
-            </a>
-            <a
-              href="#contact"
-              className="secondary-button px-8 py-4 font-bold flex items-center justify-center gap-3 hover:scale-105 transition-transform text-lg"
-            >
-              <Mail className="w-5 h-5" />
-              <span>Get In Touch</span>
-            </a>
-          </motion.div>
-
-          {/* Social Links */}
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, delay: 1.4 }}
-            className="mt-12 flex justify-center gap-6"
-          >
-            <a
-              href="https://github.com/Debasis-Behera4143"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="p-4 rounded-full bg-[#121826] border border-[#2B6FFF]/30 hover:border-[#DFFF00] transition-all group"
-            >
-              <Github className="w-6 h-6 text-[#B0B8C5] group-hover:text-[#DFFF00] transition-colors" />
-            </a>
-            <a
-              href="https://www.linkedin.com/in/debasis-behera4143"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="p-4 rounded-full bg-[#121826] border border-[#2B6FFF]/30 hover:border-[#DFFF00] transition-all group"
-            >
-              <Linkedin className="w-6 h-6 text-[#B0B8C5] group-hover:text-[#DFFF00] transition-colors" />
-            </a>
-            <a
-              href="/Resume.pdf"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="p-4 rounded-full bg-[#121826] border border-[#2B6FFF]/30 hover:border-[#DFFF00] transition-all group"
-            >
-              <Download className="w-6 h-6 text-[#B0B8C5] group-hover:text-[#DFFF00] transition-colors" />
-            </a>
-          </motion.div>
-
-          {/* Scroll Indicator */}
-          <motion.div
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ duration: 0.8, delay: 1.6 }}
-            className="mt-20 flex flex-col items-center animate-bounce"
-          >
-            <span className="text-[#B0B8C5] text-sm mb-2">Explore my work</span>
-            <div className="w-8 h-12 rounded-full border-2 border-[#2B6FFF] flex justify-center p-1">
-              <div className="w-2 h-2 bg-[#2B6FFF] rounded-full animate-scroll"></div>
-            </div>
-          </motion.div>
-        </motion.div>
-
-        <style jsx>{`
-          @keyframes scroll {
-            0% { transform: translateY(0); }
-            30% { transform: translateY(15px); }
-            100% { transform: translateY(0); }
-          }
-          .animate-scroll {
-            animation: scroll 2s infinite;
-          }
-        `}</style>
+        </div>
       </section>
-    </>
+    </div>
   );
 };
 

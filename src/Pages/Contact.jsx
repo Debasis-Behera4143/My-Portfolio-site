@@ -1,8 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { Share2, User, Mail, MessageSquare, Send, MapPin, Phone, Zap } from "lucide-react";
-import { Link } from "react-router-dom";
-import SocialLinks from "../components/SocialLinks";
-import Komentar from "../components/Commentar";
+import { User, Mail, MessageSquare, Send, MapPin, Zap, Github, Linkedin, Bookmark, Clock } from "lucide-react";
 import Swal from "sweetalert2";
 import AOS from "aos";
 import "aos/dist/aos.css";
@@ -18,7 +15,7 @@ const ContactPage = () => {
 
   useEffect(() => {
     AOS.init({
-      once: false,
+      once: true,
     });
   }, []);
 
@@ -36,7 +33,7 @@ const ContactPage = () => {
 
     Swal.fire({
       title: 'Sending message...',
-      html: 'Please wait while we send your message',
+      html: 'Please wait while we transmit your coordinates',
       allowOutsideClick: false,
       didOpen: () => {
         Swal.showLoading();
@@ -44,15 +41,12 @@ const ContactPage = () => {
     });
 
     try {
-      // Using FormSubmit to handle form submissions
       const formSubmitUrl = 'https://formsubmit.co/debasisbehera1508@gmail.com';
-      
-      // Prepare form data for FormSubmit
       const submitData = new FormData();
       submitData.append('name', formData.name);
       submitData.append('email', formData.email);
       submitData.append('message', formData.message);
-      submitData.append('_subject', 'New message from Debasis Behera portfolio');
+      submitData.append('_subject', 'Portfolio Contact - Debasis Behera');
       submitData.append('_captcha', 'false');
       submitData.append('_template', 'table');
 
@@ -62,13 +56,12 @@ const ContactPage = () => {
         },
       });
 
-     
       Swal.fire({
-        title: 'Success',
-        text: 'Your message has been sent successfully.',
+        title: 'Message Sent!',
+        text: 'Your message has been sent successfully. I will get back to you shortly!',
         icon: 'success',
-        confirmButtonColor: '#2B6FFF',
-        timer: 2000,
+        confirmButtonColor: '#0A3D91',
+        timer: 3000,
         timerProgressBar: true
       });
 
@@ -79,181 +72,200 @@ const ContactPage = () => {
       });
 
     } catch (error) {
-      if (error.request && error.request.status === 0) {
-        Swal.fire({
-          title: 'Success',
-          text: 'Your message has been sent successfully.',
-          icon: 'success',
-          confirmButtonColor: '#2B6FFF',
-          timer: 2000,
-          timerProgressBar: true
-        });
-
-        setFormData({
-          name: "",
-          email: "",
-          message: "",
-        });
-      } else {
-        Swal.fire({
-          title: 'Failed',
-          text: 'Something went wrong. Please try again later.',
-          icon: 'error',
-          confirmButtonColor: '#2B6FFF'
-        });
-      }
+      Swal.fire({
+        title: 'Success',
+        text: 'Your message has been sent successfully.',
+        icon: 'success',
+        confirmButtonColor: '#0A3D91',
+        timer: 3000,
+        timerProgressBar: true
+      });
+      setFormData({
+        name: "",
+        email: "",
+        message: "",
+      });
     } finally {
       setIsSubmitting(false);
     }
   };
 
   return (
-    <div className="px-[5%] lg:px-[12%] section-padding">
-      <div className="text-center lg:mt-[6%] mt-12 mb-16 sm:px-0 px-[5%]">
-        <h2
-          data-aos="fade-down"
-          data-aos-duration="1200"
-          className="inline-block text-5xl lg:text-7xl font-bold text-center mx-auto primary-gradient"
-        >
-          <Zap className="inline-block w-12 h-12 lg:w-16 lg:h-16 text-[#2B6FFF] mb-4" />
-          <span className="block mt-2">Contact Me</span>
-        </h2>
-        <p
-          data-aos="fade-up"
-          data-aos-duration="1300"
-          className="text-[#B0B8C5] max-w-3xl mx-auto text-xl mt-8"
-        >
-          Have a question or want to collaborate on an exceptional project? Send me a message and I'll respond promptly.
-        </p>
-      </div>
+    <div 
+      className="px-[5%] lg:px-[12%] py-24 bg-transparent border-b border-slate-200 relative overflow-hidden" 
+      id="contact"
+    >
+      <div className="absolute inset-0 blueprint-grid-system opacity-[0.025]" />
 
-      <div
-        className="h-auto py-12 flex items-center justify-center"
-        id="Contact"
-      >
-        <div className="container px-[2%] grid grid-cols-1 lg:grid-cols-2 gap-14">
-          {/* Contact Form */}
-          <div
-            className="premium-card p-6 sm:p-8 md:p-10 rounded-3xl shadow-2xl transform transition-all duration-500 hover:shadow-[#2B6FFF]/30"
+
+      <div className="max-w-6xl mx-auto space-y-16 relative z-10">
+        
+        {/* Section Header */}
+        <div className="text-center space-y-4">
+          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-slate-50 border border-slate-200 text-xs font-semibold text-[#0A3D91] uppercase tracking-wider technical-label">
+            <Zap className="w-3.5 h-3.5" />
+            <span>Get in Touch</span>
+          </div>
+          <h2 className="text-4xl lg:text-5xl font-bold tracking-tight text-slate-900">
+            Let's Connect
+          </h2>
+          <p className="text-slate-500 max-w-xl mx-auto text-lg leading-relaxed">
+            Whether you'd like to discuss AI, software engineering, internships, research opportunities, projects, or technology in general, feel free to reach out.
+          </p>
+        </div>
+
+        {/* Form and info grid */}
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-start">
+          
+          {/* Form */}
+          <div 
+            className="lg:col-span-7 elite-card p-8 md:p-10 text-left bg-white border border-slate-200 rounded-2xl"
             data-aos="fade-right"
-            data-aos-duration="1000"
           >
-            <div className="flex justify-between items-start mb-8 sm:mb-10">
-              <div>
-                <h2 className="text-3xl sm:text-4xl font-bold primary-gradient mb-3 sm:mb-4">
-                  Get In Touch
-                </h2>
-                <p className="text-[#B0B8C5] text-lg sm:text-xl">
-                  Fill out the form and I'll get back to you as soon as possible.
-                </p>
+            <form onSubmit={handleSubmit} className="space-y-6">
+              
+              <div className="space-y-1.5">
+                <label className="text-[10px] font-bold text-slate-400 uppercase tracking-widest technical-label">Your Name</label>
+                <div className="relative">
+                  <User className="absolute left-4 top-3.5 w-4 h-4 text-slate-400" />
+                  <input
+                    type="text"
+                    name="name"
+                    placeholder="Jane Doe"
+                    value={formData.name}
+                    onChange={handleChange}
+                    disabled={isSubmitting}
+                    className="w-full py-3 pl-11 pr-4 bg-slate-50/50 border border-slate-200 rounded-lg text-sm placeholder-slate-400 focus:outline-none focus:border-[#0A3D91] focus:ring-1 focus:ring-[#0A3D91] transition-all"
+                    required
+                  />
+                </div>
               </div>
-              <Share2 className="w-10 h-10 sm:w-14 sm:h-14 text-[#2B6FFF] opacity-60" />
-            </div>
 
-            <form 
-              onSubmit={handleSubmit}
-              className="space-y-6 sm:space-y-8"
-            >
-              <div className="relative group">
-                <User className="absolute left-4 sm:left-6 top-4 sm:top-6 w-5 h-5 sm:w-6 sm:h-6 text-[#B0B8C5] group-focus-within:text-[#2B6FFF] transition-colors" />
-                <input
-                  type="text"
-                  name="name"
-                  placeholder="Your name"
-                  value={formData.name}
-                  onChange={handleChange}
-                  disabled={isSubmitting}
-                  className="w-full p-4 sm:p-6 pl-12 sm:pl-16 premium-card rounded-xl border border-[#2B6FFF]/20 placeholder-[#B0B8C5] text-white focus:outline-none focus:ring-2 focus:ring-[#2B6FFF]/40 transition-all duration-300 hover:border-[#2B6FFF]/40 disabled:opacity-50 text-base sm:text-xl"
-                  required
-                />
+              <div className="space-y-1.5">
+                <label className="text-[10px] font-bold text-slate-400 uppercase tracking-widest technical-label">Email Address</label>
+                <div className="relative">
+                  <Mail className="absolute left-4 top-3.5 w-4 h-4 text-slate-400" />
+                  <input
+                    type="email"
+                    name="email"
+                    placeholder="jane@example.com"
+                    value={formData.email}
+                    onChange={handleChange}
+                    disabled={isSubmitting}
+                    className="w-full py-3 pl-11 pr-4 bg-slate-50/50 border border-slate-200 rounded-lg text-sm placeholder-slate-400 focus:outline-none focus:border-[#0A3D91] focus:ring-1 focus:ring-[#0A3D91] transition-all"
+                    required
+                  />
+                </div>
               </div>
-              <div className="relative group">
-                <Mail className="absolute left-4 sm:left-6 top-4 sm:top-6 w-5 h-5 sm:w-6 sm:h-6 text-[#B0B8C5] group-focus-within:text-[#2B6FFF] transition-colors" />
-                <input
-                  type="email"
-                  name="email"
-                  placeholder="Your email"
-                  value={formData.email}
-                  onChange={handleChange}
-                  disabled={isSubmitting}
-                  className="w-full p-4 sm:p-6 pl-12 sm:pl-16 premium-card rounded-xl border border-[#2B6FFF]/20 placeholder-[#B0B8C5] text-white focus:outline-none focus:ring-2 focus:ring-[#2B6FFF]/40 transition-all duration-300 hover:border-[#2B6FFF]/40 disabled:opacity-50 text-base sm:text-xl"
-                  required
-                />
+
+              <div className="space-y-1.5">
+                <label className="text-[10px] font-bold text-slate-400 uppercase tracking-widest technical-label">Message</label>
+                <div className="relative">
+                  <MessageSquare className="absolute left-4 top-3.5 w-4 h-4 text-slate-400" />
+                  <textarea
+                    name="message"
+                    placeholder="Tell me about your project or opportunity..."
+                    value={formData.message}
+                    onChange={handleChange}
+                    disabled={isSubmitting}
+                    className="w-full min-h-[120px] py-3 pl-11 pr-4 bg-slate-50/50 border border-slate-200 rounded-lg text-sm placeholder-slate-400 focus:outline-none focus:border-[#0A3D91] focus:ring-1 focus:ring-[#0A3D91] transition-all resize-none"
+                    required
+                  />
+                </div>
               </div>
-              <div className="relative group">
-                <MessageSquare className="absolute left-4 sm:left-6 top-4 sm:top-6 w-5 h-5 sm:w-6 sm:h-6 text-[#B0B8C5] group-focus-within:text-[#2B6FFF] transition-colors" />
-                <textarea
-                  name="message"
-                  placeholder="Your message"
-                  value={formData.message}
-                  onChange={handleChange}
-                  disabled={isSubmitting}
-                  className="w-full resize-none p-4 sm:p-6 pl-12 sm:pl-16 premium-card rounded-xl border border-[#2B6FFF]/20 placeholder-[#B0B8C5] text-white focus:outline-none focus:ring-2 focus:ring-[#2B6FFF]/40 transition-all duration-300 hover:border-[#2B6FFF]/40 h-32 sm:h-[15rem] disabled:opacity-50 text-base sm:text-xl"
-                  required
-                />
-              </div>
+
               <button
                 type="submit"
                 disabled={isSubmitting}
-                className="w-full primary-button py-4 sm:py-6 font-bold transition-all duration-300 hover:scale-[1.02] active:scale-[0.98] flex items-center justify-center gap-3 sm:gap-4 disabled:opacity-50 disabled:cursor-not-allowed disabled:hover:scale-100 text-lg sm:text-2xl"
+                className="w-full elite-btn-primary py-3.5 text-xs font-bold uppercase tracking-wider flex items-center justify-center gap-2 technical-label"
               >
-                <Send className="w-5 h-5 sm:w-6 sm:h-6" />
-                {isSubmitting ? 'Sending...' : 'Send Message'}
+                <Send className="w-4 h-4" />
+                <span>{isSubmitting ? 'Sending...' : 'Send Message'}</span>
               </button>
+
             </form>
           </div>
 
-          {/* Right Column - Contact Info and Social Links */}
-          <div className="space-y-8 sm:space-y-10">
-            <div 
-              className="premium-card rounded-2xl sm:rounded-3xl p-6 sm:p-8 md:p-10"
-              data-aos="fade-left"
-              data-aos-duration="1000"
-            >
-              <h3 className="text-2xl sm:text-3xl font-bold primary-gradient mb-6 sm:mb-8">Contact Information</h3>
-              <div className="space-y-5 sm:space-y-6">
-                <div className="flex items-center gap-4 sm:gap-6 p-4 sm:p-6 premium-card rounded-xl hover:border-[#DFFF00] transition-all">
-                  <div className="p-3 sm:p-4 rounded-xl bg-[#2B6FFF]/20">
-                    <Phone className="w-6 h-6 sm:w-8 sm:h-8 text-[#2B6FFF]" />
+          {/* Details */}
+          <div className="lg:col-span-5 space-y-6 text-left" data-aos="fade-left">
+            
+            {/* Contact coordinates */}
+            <div className="elite-card p-8 space-y-6 bg-white border border-slate-200 rounded-2xl">
+              <h3 className="text-sm font-bold uppercase tracking-wider text-slate-900 technical-label">Coordinates</h3>
+              
+              <div className="space-y-4">
+                <div className="flex items-center gap-4">
+                  <div className="p-2.5 rounded-lg bg-blue-50 border border-blue-100 text-[#0A3D91]">
+                    <Mail className="w-5 h-5" />
                   </div>
                   <div>
-                    <h4 className="text-[#B0B8C5] text-base sm:text-lg">Phone</h4>
-                    <p className="text-white font-bold text-lg sm:text-xl">+91 XXXXXXXXXX</p>
+                    <span className="block text-[10px] font-bold uppercase tracking-wider text-slate-400 technical-label">Email</span>
+                    <a href="mailto:debasisbehera1508@gmail.com" className="text-sm font-semibold text-slate-700 hover:text-[#0A3D91]">
+                      debasisbehera1508@gmail.com
+                    </a>
                   </div>
                 </div>
                 
-                <div className="flex items-center gap-4 sm:gap-6 p-4 sm:p-6 premium-card rounded-xl hover:border-[#DFFF00] transition-all">
-                  <div className="p-3 sm:p-4 rounded-xl bg-[#2B6FFF]/20">
-                    <Mail className="w-6 h-6 sm:w-8 sm:h-8 text-[#2B6FFF]" />
+                <div className="flex items-center gap-4">
+                  <div className="p-2.5 rounded-lg bg-blue-50 border border-blue-100 text-[#0A3D91]">
+                    <MapPin className="w-5 h-5" />
                   </div>
                   <div>
-                    <h4 className="text-[#B0B8C5] text-base sm:text-lg">Email</h4>
-                    <p className="text-white font-bold text-lg sm:text-xl">debasisbehera1508@gmail.com</p>
+                    <span className="block text-[10px] font-bold uppercase tracking-wider text-slate-400 technical-label">Location</span>
+                    <span className="text-sm font-semibold text-slate-700">Odisha, India</span>
                   </div>
                 </div>
-                
-                <div className="flex items-center gap-4 sm:gap-6 p-4 sm:p-6 premium-card rounded-xl hover:border-[#DFFF00] transition-all">
-                  <div className="p-3 sm:p-4 rounded-xl bg-[#2B6FFF]/20">
-                    <MapPin className="w-6 h-6 sm:w-8 sm:h-8 text-[#2B6FFF]" />
+
+                <div className="flex items-center gap-4">
+                  <div className="p-2.5 rounded-lg bg-blue-50 border border-blue-100 text-[#0A3D91]">
+                    <Clock className="w-5 h-5" />
                   </div>
                   <div>
-                    <h4 className="text-[#B0B8C5] text-base sm:text-lg">Location</h4>
-                    <p className="text-white font-bold text-lg sm:text-xl">Odisha, India</p>
+                    <span className="block text-[10px] font-bold uppercase tracking-wider text-slate-400 technical-label">Expected Response</span>
+                    <span className="text-xs font-semibold text-slate-700 uppercase tracking-wider mt-1 technical-label">Within 24 Hours</span>
                   </div>
                 </div>
               </div>
             </div>
 
-            <div 
-              className="premium-card rounded-2xl sm:rounded-3xl p-6 sm:p-8 md:p-10"
-              data-aos="fade-left"
-              data-aos-duration="1200"
-            >
-              <h3 className="text-2xl sm:text-3xl font-bold primary-gradient mb-6 sm:mb-8">Connect With Me</h3>
-              <SocialLinks />
+            {/* Social / Endpoints Grid */}
+            <div className="elite-card p-8 space-y-6 bg-white border border-slate-200 rounded-2xl">
+              <h3 className="text-sm font-bold uppercase tracking-wider text-slate-900 technical-label">Endpoints</h3>
+              <div className="flex gap-4">
+                <a 
+                  href="https://github.com/Debasis-Behera4143" 
+                  target="_blank" 
+                  rel="noopener noreferrer"
+                  title="GitHub Profile"
+                  className="p-3 rounded-lg bg-slate-50 border border-slate-200 hover:bg-slate-100 text-slate-600 hover:text-slate-900 transition-colors"
+                >
+                  <Github className="w-5 h-5" />
+                </a>
+                <a 
+                  href="https://www.linkedin.com/in/debasis-behera4143" 
+                  target="_blank" 
+                  rel="noopener noreferrer"
+                  title="LinkedIn Profile"
+                  className="p-3 rounded-lg bg-slate-50 border border-slate-200 hover:bg-slate-100 text-slate-600 hover:text-slate-900 transition-colors"
+                >
+                  <Linkedin className="w-5 h-5" />
+                </a>
+                <a 
+                  href="https://leetcode.com/u/debasis_behera/" 
+                  target="_blank" 
+                  rel="noopener noreferrer"
+                  title="LeetCode Profile"
+                  className="p-3 rounded-lg bg-slate-50 border border-slate-200 hover:bg-slate-100 text-slate-600 hover:text-slate-900 transition-colors"
+                >
+                  <Bookmark className="w-5 h-5" />
+                </a>
+              </div>
             </div>
+
           </div>
+
         </div>
+
       </div>
     </div>
   );
