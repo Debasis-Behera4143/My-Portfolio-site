@@ -8,7 +8,7 @@ export default defineConfig({
     viteCompression({ algorithm: 'brotliCompress' }),
     viteCompression({ algorithm: 'gzip' })
   ],
-  base: '/My-Portfolio-site/',
+  base: '/',
   server: {
     port: 3000,
     open: true,

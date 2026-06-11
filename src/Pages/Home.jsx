@@ -80,12 +80,11 @@ const Home = () => {
               {/* Photo Image Frame */}
               <div className="absolute inset-3 rounded-xl overflow-hidden border-2 border-slate-300 bg-slate-100 z-10 group shadow-lg">
                 <img
-                  src="/Photo.jpg"
+                  src={new URL('/assets/DEBA.jpeg', import.meta.url).href}
                   alt="Debasis Behera"
                   className="w-full h-full object-cover grayscale-[20%] contrast-[105%] group-hover:scale-105 transition-transform duration-700"
                   onError={(e) => {
-                    // Fallback to PROFILE.jpg if Photo.jpg fails
-                    e.target.src = "/PROFILE.jpg";
+                    e.target.src = new URL('/PROFILE.jpg', import.meta.url).href;
                   }}
                 />
                 
