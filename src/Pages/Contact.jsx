@@ -43,8 +43,8 @@ const ContactPage = () => {
     try {
       const formSubmitUrl = 'https://api.web3forms.com/submit';
       const submitData = new FormData();
-      // NOTE: Replace this with your actual Web3Forms access key
-      submitData.append('access_key', '4befb1cd-0e92-4dae-b80f-66b5476f58bc');
+      // Using environment variable for security
+      submitData.append('access_key', import.meta.env.VITE_WEB3FORMS_ACCESS_KEY);
       submitData.append('name', formData.name);
       submitData.append('email', formData.email);
       submitData.append('message', formData.message);
